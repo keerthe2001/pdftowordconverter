@@ -285,18 +285,142 @@ ${T("html-to-pdf", "HTML to PDF")}
 <h2>Tips</h2>
 <ul><li>Many news sites have a "print" view that removes ads — convert that URL.</li><li>Long pages become multi-page PDFs; use <a href="/remove-pages">Remove Pages</a> to trim.</li></ul>`,
   },
+  {
+    slug: "how-a-legal-assistant-can-embed-fonts-correctly-when-exporting-to-pdf", tool: "pdf-to-pdfa", date: "2026-08-20", updated: "2026-11-18",
+    title: "How to Embed Fonts Correctly When Exporting to PDF (Legal Documents Guide)",
+    description: "Make sure every font is embedded when you export a petition, affidavit or contract to PDF — Word settings, how to check, and how to fix 'font could not be embedded' errors.",
+    body: `
+<p>Court e-filing portals, registries and opposing counsel all expect a PDF that looks identical on every computer. The most common reason it doesn't is a <strong>font that wasn't embedded</strong>: the reader's computer substitutes another font, and line breaks, page numbers and paragraph references shift. Here's how a legal assistant (or anyone sending formal documents) can get it right every time.</p>
+<h2>What "embedding a font" means</h2>
+<p>A PDF can either carry the font data inside the file (embedded) or just name the font and hope the reader has it installed. Embedded fonts guarantee the same look everywhere. Most tools embed only the characters you used (an <em>embedded subset</em>), which keeps the file small and is perfectly acceptable for filing.</p>
+<h2>Exporting from Microsoft Word</h2>
+<ol>
+<li>Use <strong>File → Save As → PDF</strong> (or <strong>File → Export → Create PDF/XPS</strong>) rather than a third-party "print to PDF" driver.</li>
+<li>Click <strong>Options</strong> and tick <strong>ISO 19005-1 compliant (PDF/A)</strong>. PDF/A requires every font to be embedded, so Word will embed them or warn you.</li>
+<li>Leave <em>Optimize for</em> on <strong>Standard</strong>, not <em>Minimum size</em>.</li>
+<li>If you send the .docx itself to a colleague, also enable <strong>File → Options → Save → Embed fonts in the file</strong> so they see the same fonts before exporting.</li>
+</ol>
+<p>No Word? Our <a href="/word-to-pdf">Word to PDF converter</a> uses LibreOffice with metric-compatible versions of Calibri, Cambria, Arial and Times New Roman and embeds all fonts automatically.</p>
+<h2>How to check that fonts are embedded</h2>
+<ul>
+<li>In Adobe Acrobat Reader: <strong>File → Properties → Fonts</strong>. Every font should say <em>(Embedded)</em> or <em>(Embedded Subset)</em>.</li>
+<li>Any font listed without that label will be substituted on other computers — fix it before filing.</li>
+</ul>
+<h2>"The document was saved without PDF/X compliancy because a required font could not be embedded"</h2>
+<p>This warning means a font's licence forbids embedding, or the font file is missing on your machine. Fixes, in order of preference:</p>
+<ol>
+<li>Switch that text to a standard font that allows embedding (Times New Roman, Arial, Calibri, Garamond, Georgia).</li>
+<li>Reinstall the font from its original source — partially installed fonts often cause the error.</li>
+<li>As a last resort, convert the finished PDF with <a href="/pdf-to-pdfa">PDF to PDF/A</a>, which embeds every font it can find and outlines the rest so the text still looks right.</li>
+</ol>
+${T("pdf-to-pdfa", "PDF to PDF/A")}
+<h2>Checklist before you file</h2>
+<ul>
+<li>All fonts show as embedded in the Fonts tab.</li>
+<li>Page count and paragraph numbering match your Word file.</li>
+<li>Text is selectable (not a scanned image) — if it's a scan, run <a href="/ocr-pdf">OCR PDF</a> first.</li>
+<li>File size is within the portal's limit — use <a href="/compress-pdf">Compress PDF</a> with an exact KB target.</li>
+<li>Confidential details are properly removed with <a href="/redact-pdf">Redact PDF</a>, not just covered with black boxes.</li>
+</ul>`,
+  },
+  {
+    slug: "best-page-size-and-margin-settings-for-pdf-export", tool: "word-to-pdf", date: "2026-08-20", updated: "2026-11-18",
+    title: "Best Page Size and Margin Settings for PDF Export (A4 vs Letter)",
+    description: "Which page size and margins to use when exporting resumes, assignments, legal and official documents to PDF — A4 vs Letter, safe margins, and how to fix pages that print cut off.",
+    body: `
+<p>A PDF that looks fine on screen can still print with cut-off edges, get rejected by a portal, or shrink to an odd size on the reader's printer. Getting page size and margins right before you export avoids all three.</p>
+<h2>A4 or Letter?</h2>
+<ul>
+<li><strong>A4 (210 × 297 mm)</strong> — the standard in India, Europe, and most of the world. Use it for documents you submit in India.</li>
+<li><strong>US Letter (8.5 × 11 in)</strong> — used in the US and Canada. Use it for applications to employers or universities there.</li>
+</ul>
+<p>Word sometimes defaults to Letter even on Indian computers. Check <strong>Layout → Size</strong> before you export — a Letter page printed on A4 paper gets scaled down or loses its bottom edge.</p>
+<h2>Safe margins</h2>
+<ul>
+<li><strong>Most documents:</strong> 2.54 cm (1 inch) on all sides — Word's "Normal" setting.</li>
+<li><strong>Resumes:</strong> 1.27–2 cm works if you need space, but don't go below 1.27 cm (0.5 inch); many printers can't print that close to the edge.</li>
+<li><strong>Bound or filed documents:</strong> add extra space on the binding side (a left or "gutter" margin of 3–4 cm) — always follow the specific court, university or office rules when they exist.</li>
+</ul>
+<h2>Export settings that keep the layout</h2>
+<ol>
+<li>Set the page size and margins first, then check page breaks in Print Preview.</li>
+<li>Export with <strong>File → Save As → PDF</strong> and keep <em>Optimize for</em> on <strong>Standard</strong>.</li>
+<li>Open the PDF and confirm the page size under <strong>File → Properties</strong> in your PDF reader.</li>
+</ol>
+<p>Converting without Word? <a href="/word-to-pdf">Word to PDF</a> keeps the page size and margins from your document exactly.</p>
+${T("word-to-pdf", "Word to PDF")}
+<h2>Fixing a PDF that's already wrong</h2>
+<ul>
+<li><strong>Too much white border?</strong> Trim it with <a href="/crop-pdf">Crop PDF</a> (auto-detect margins).</li>
+<li><strong>Pages in the wrong orientation?</strong> Use <a href="/rotate-pdf">Rotate PDF</a>.</li>
+<li><strong>Page numbers missing?</strong> Add them with <a href="/add-page-numbers">Add Page Numbers</a> — keep them inside the margin so they print.</li>
+<li><strong>Fonts look different?</strong> See <a href="/blog/how-a-legal-assistant-can-embed-fonts-correctly-when-exporting-to-pdf">how to embed fonts correctly</a>.</li>
+</ul>`,
+  },
+  {
+    slug: "how-to-redact-confidential-info-in-a-pdf-before-sharing", tool: "redact-pdf", date: "2026-08-20", updated: "2026-11-18",
+    title: "How to Redact Confidential Info in a PDF Before Sharing (the Right Way)",
+    description: "Black boxes don't hide text — anyone can copy it out. How to truly redact Aadhaar, PAN, account numbers and names from a PDF, free, without uploading it anywhere.",
+    body: `
+<p>Drawing a black rectangle over text in Word, a PDF editor or a screenshot tool <strong>does not remove the text</strong>. The words are still in the file underneath — anyone can select, copy or search for them. Real redaction deletes the content itself.</p>
+<h2>Redact a PDF in 4 steps</h2>
+<ol>
+<li>Open <a href="/redact-pdf">Redact PDF</a> and select your file. It opens on your device; nothing is uploaded.</li>
+<li>Type the words or numbers to remove (every occurrence is found), use the quick finders, or draw boxes over signatures, photos and addresses.</li>
+<li>Click <strong>Redact PDF</strong>. The text, images and drawings under each box are permanently removed from the page.</li>
+<li>Download the redacted copy and share that one. Keep the original somewhere safe.</li>
+</ol>
+${T("redact-pdf", "Redact PDF")}
+<h2>Test it before you send it</h2>
+<ul>
+<li>Press <strong>Ctrl+A</strong> (select all), copy, and paste into Notepad. The redacted words must not appear.</li>
+<li>Use your PDF reader's search (<strong>Ctrl+F</strong>) for a redacted number. It should find nothing.</li>
+</ul>
+<h2>What people commonly forget</h2>
+<ul>
+<li><strong>Every occurrence</strong> — an account number can appear in the header, the table and the footer. Typing it as a search term catches all of them; drawn boxes cover only what you draw.</li>
+<li><strong>Scanned pages</strong> — the redaction removes image pixels under the box too, so scans are covered.</li>
+<li><strong>File name and title</strong> — rename "Ramesh_Kumar_Salary_Slip.pdf" before sending.</li>
+<li><strong>Password-protected files</strong> — if it's your own statement, remove the password first with <a href="/unlock-pdf">Unlock PDF</a>, then redact.</li>
+</ul>
+<h2>Why do it in the browser?</h2>
+<p>The documents you redact are by definition sensitive. Uploading them to an online service to hide information defeats the purpose. Our redaction runs locally with the MuPDF engine, so the unredacted file never leaves your device.</p>`,
+  },
+  {
+    slug: "how-to-fill-and-flatten-a-pdf-form-for-your-job-application", tool: "edit-pdf", date: "2026-08-20", updated: "2026-11-18",
+    title: "How to Fill and Flatten a PDF Form for Your Job Application",
+    description: "Fill in a PDF application form — fillable or not — and flatten it so your answers can't be changed or lost when HR opens it. Free, in your browser.",
+    body: `
+<p>Job and exam application forms often come as PDFs. Some have fillable boxes, many don't. Either way, HR should receive a file where your answers are <strong>flat</strong> — part of the page itself, not editable fields that can go blank in some PDF viewers or be changed after you send it.</p>
+<h2>Form without fillable boxes</h2>
+<ol>
+<li>Open <a href="/edit-pdf">Edit PDF</a> and select the form.</li>
+<li>Choose <strong>Text</strong>, click on each blank and type. Drag to line it up.</li>
+<li>Add your signature with <strong>Image</strong> (a photo of your signature) or draw it with <strong>Draw</strong> — or use <a href="/sign-pdf">Sign PDF</a>.</li>
+<li>Click <strong>Save changes</strong>. Everything you add is drawn into the page, so the downloaded form is already flat.</li>
+</ol>
+${T("edit-pdf", "Edit PDF")}
+<h2>Form with fillable boxes</h2>
+<ol>
+<li>Fill the fields in your browser's PDF viewer (Chrome or Edge) or Acrobat Reader.</li>
+<li>To flatten, open the print dialog and choose <strong>Save as PDF</strong> (or <em>Microsoft Print to PDF</em>) as the printer. The new file contains your answers as page content, not fields.</li>
+<li>Open the new file and check every answer is visible and nothing is editable.</li>
+</ol>
+<h2>Final checks before you upload</h2>
+<ul>
+<li><strong>Size limit?</strong> Use <a href="/compress-pdf">Compress PDF</a> with an exact KB target, or <a href="/exam-form-ready">Exam Form Ready</a> for government exam portals.</li>
+<li><strong>Need to attach certificates?</strong> Combine them into one file with <a href="/merge-pdf">Merge PDF</a>.</li>
+<li><strong>Extra instruction pages?</strong> Drop them with <a href="/remove-pages">Remove Pages</a> if the employer only wants the form.</li>
+</ul>`,
+  },
 ];
 
 // Old URLs that are permanently redirected to the best matching page.
 export const REDIRECTS = {
   "/blog/convert-word-to-pdf-without-losing-formatting-in-5-minutes": "/blog/convert-word-to-pdf-without-losing-formatting-fast-guide",
-  "/blog/how-a-legal-assistant-can-embed-fonts-correctly-when-exporting-to-pdf": "/blog/convert-word-to-pdf-without-losing-formatting-fast-guide",
-  "/blog/best-page-size-and-margin-settings-for-pdf-export": "/blog/convert-word-to-pdf-without-losing-formatting-fast-guide",
   "/blog/convert-pdf-pages-to-jpg-free-online-no-sign-up-needed": "/pdf-to-jpg",
-  "/blog/how-to-redact-confidential-info-in-a-pdf-before-sharing": "/redact-pdf",
   "/blog/convert-pdf-to-editable-word-free-online-guide-for-job-seekers": "/pdf-to-word",
   "/blog/make-a-scanned-pdf-searchable-with-free-ocr-in-your-browser": "/ocr-pdf",
-  "/blog/how-to-fill-and-flatten-a-pdf-form-for-your-job-application": "/edit-pdf",
   "/blog/combine-invoices-into-one-monthly-pdffree-no-sign-up": "/blog/how-to-merge-multiple-pdfs-into-one-file-free-fast",
   "/blog/compress-a-pdf-for-email-limits-without-losing-quality": "/blog/compress-pdf-without-losing-quality",
   "/blog/convert-pdf-to-pdfa-for-long-term-archiving-free-private-guide": "/pdf-to-pdfa",
