@@ -410,7 +410,10 @@ export const TOOLS = [
     intro: ["Page numbers make long reports, theses and submissions easy to navigate and print. Choose from six positions and formats like '1', 'Page 1' or 'Page 1 of 20', start from any number, and skip cover pages by numbering only a range.", "Numbers are placed correctly even on rotated or landscape pages."],
     steps: ["Select your PDF.", "Choose position, format, start number and font.", "Optionally enter which pages to number (e.g. 2- to skip the cover).", "Click Add page numbers and download."],
     features: ["6 positions, 5 formats", "Start at any number", "Skip cover pages", "Correct on rotated pages"],
-    faq: [["How do I skip the first page?", "Enter '2-' in Pages to number, and set Start numbering at to 1 (or 2, if the cover should count)."]],
+    faq: [
+      ["How do I skip the first page?", "Enter '2-' in Pages to number, and set Start numbering at to 1 (or 2, if the cover should count)."],
+      ["Can I start page numbering at 100 or another number?", "Yes. Type 100, or any number from 1 upwards, in Start numbering at. The first numbered page gets that number and the rest count up from it: 100, 101, 102 and so on. With the 'Page 1 of N' format the total counts up from your start number too, so 10 pages starting at 100 end at 'Page 109 of 109'."],
+    ],
     related: ["watermark-pdf", "edit-pdf", "merge-pdf"], next: ["compress-pdf", "protect-pdf"],
   },
   {
