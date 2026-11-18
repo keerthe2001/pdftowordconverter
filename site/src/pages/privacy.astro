@@ -1,0 +1,29 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../data/tools.mjs";
+const updated = "16 November 2026";
+---
+<Base title="Privacy Policy" description="How PDFtoWordConverter.in handles your files and data: on-device processing, server conversions deleted immediately, cookies and advertising." path="/privacy">
+  <section class="section"><div class="wrap prose">
+    <h1>Privacy Policy</h1>
+    <p class="muted">Last updated: {updated}</p>
+    <p>This policy explains what happens to your files and information when you use {SITE.domain} ("we", "us"). In short: we built the site so that we don't need your data.</p>
+    <h2>1. Files processed on your device</h2>
+    <p>The following tools run entirely in your web browser and never send your files to us or anyone else: Merge, Split, Remove Pages, Extract Pages, Organize, Rotate, Scan to PDF, Compress, Repair, OCR, JPG to PDF, PDF to JPG, PDF to PDF/A, Edit, Add Page Numbers, Watermark, Crop, Sign, Protect, Unlock, Redact, Compare and Exam Form Ready. Passwords you type to open or protect a PDF are also used only on your device.</p>
+    <h2>2. Files processed on our server</h2>
+    <p>Word/PowerPoint/Excel/HTML to PDF and PDF to Word/PowerPoint/Excel are converted on our server. Your file is transmitted over an encrypted HTTPS connection, held in temporary memory/storage only for the duration of the conversion, and deleted immediately after the result is returned to you (typically within seconds). We do not keep copies, read the contents, or use them for any other purpose. For HTML to PDF, the web address you enter is fetched by our server to render the page.</p>
+    <h2>3. Information collected automatically</h2>
+    <p>Like any website, our hosting provider (Cloudflare) and conversion host (Render) process technical data such as IP address, browser type and request times to deliver and secure the service. We may use privacy-friendly, cookie-less analytics to count page views. We do not build profiles of individual users.</p>
+    <h2>4. Cookies and advertising</h2>
+    <p>We use Google AdSense to show ads. Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this and other websites. Google's use of advertising cookies enables it and its partners to serve ads based on your visits to our site and/or other sites on the Internet. You can opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" rel="noopener">Google Ads Settings</a>, and learn more at <a href="https://policies.google.com/technologies/ads" rel="noopener">How Google uses information from sites that use its services</a>. You can also opt out of some third-party vendors' use of cookies at <a href="https://www.aboutads.info/choices" rel="noopener">aboutads.info</a>. Where required by law, we ask for consent before personalised ads are shown.</p>
+    <p>The site also stores small amounts of data in your browser (for example, cached OCR language models and a file you choose to pass from one tool to the next). This stays on your device and is cleared automatically or when you clear your browser data.</p>
+    <h2>5. Children</h2>
+    <p>The service is not directed at children under 13, and we do not knowingly collect personal information from them.</p>
+    <h2>6. Your rights</h2>
+    <p>Because we don't store your files or keep user accounts, there is usually no personal data for us to access, correct or delete. If you believe we hold data about you, contact us and we will respond in line with applicable law, including India's Digital Personal Data Protection Act, 2023.</p>
+    <h2>7. Changes</h2>
+    <p>We may update this policy. The date at the top shows the latest version.</p>
+    <h2>8. Contact</h2>
+    <p>Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+  </div></section>
+</Base>

@@ -1,0 +1,102 @@
+---
+import "../styles/global.css";
+import { SITE, CATEGORIES, TOOLS } from "../data/tools.mjs";
+const { title, description, path = Astro.url.pathname, jsonld = [], noindex = false, ogType = "website", api = false } = Astro.props;
+const clean = path === "/" ? "/" : path.replace(/\/$/, "").replace(/\.html$/, "");
+const canonical = SITE.url + (clean === "/" ? "/" : clean);
+const fullTitle = title.includes(SITE.name) || title.length + SITE.name.length + 3 > 64 ? title : `${title} | ${SITE.name}`;
+const org = { "@context": "https://schema.org", "@type": "Organization", name: SITE.name, url: SITE.url, logo: `${SITE.url}/icon-512.png` };
+const website = { "@context": "https://schema.org", "@type": "WebSite", name: SITE.name, url: SITE.url };
+const ADSENSE = "ca-pub-7635098027572523";
+const ADS_ENABLED = false; // flip to true after AdSense approval
+---
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {noindex && <meta name="robots" content="noindex, follow" />}
+  <meta name="theme-color" content="#3346d3" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/icon-180.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content={SITE.name} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={`${SITE.url}/og.png`} />
+  <meta property="og:locale" content="en_IN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${SITE.url}/og.png`} />
+  <meta name="google-site-verification" content="otMnB5Z-WkPak5aqTHya8Gz4LVYO43ZoIBcdHsEFXyA" />
+  <meta name="google-site-verification" content="9NTpVNrx7RsOnUejRHSwBx9rSG1nIHGwix8UnbGskZ4" />
+  <meta name="google-adsense-account" content={ADSENSE} />
+  {api && <meta name="converter-api" content={SITE.converterApi} />}
+  {api && <link rel="preconnect" href={SITE.converterApi} />}
+  {[org, website, ...jsonld].map(j => <script type="application/ld+json" set:html={JSON.stringify(j)} />)}
+  {ADS_ENABLED && <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}`} crossorigin="anonymous"></script>}
+  <slot name="head" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="/" aria-label={`${SITE.name} home`}><span class="logo-mark" aria-hidden="true">P2W</span><span>PDFtoWord<small>Converter.in</small></span></a>
+      <button class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="nav">☰</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="/merge-pdf">Merge</a>
+        <a href="/compress-pdf">Compress</a>
+        <a href="/pdf-to-word">PDF to Word</a>
+        <details>
+          <summary>All tools ▾</summary>
+          <div class="mega">
+            {CATEGORIES.map(c => (
+              <div><h4>{c.name}</h4>{TOOLS.filter(t => t.category === c.id).map(t => <a href={`/${t.slug}`}>{t.name}</a>)}</div>
+            ))}
+          </div>
+        </details>
+        <a href="/exam-form-ready" class="hot">Exam Form Ready</a>
+        <a href="/blog">Guides</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main"><slot /></main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="fgrid">
+        <div>
+          <a class="logo" href="/" style="color:#fff"><span class="logo-mark" aria-hidden="true">P2W</span><span>PDFtoWordConverter.in</span></a>
+          <p style="margin-top:12px">Free, private PDF tools. Most tools run entirely on your device — your files are never uploaded.</p>
+          <p><a href={SITE.github} rel="noopener">Open source on GitHub</a></p>
+        </div>
+        {CATEGORIES.slice(0, 3).map(c => (
+          <div><h4>{c.name}</h4><ul>{TOOLS.filter(t => t.category === c.id).map(t => <li><a href={`/${t.slug}`}>{t.name}</a></li>)}</ul></div>
+        ))}
+        <div>
+          <h4>More</h4>
+          <ul>
+            {TOOLS.filter(t => ["from-pdf", "edit", "security"].includes(t.category)).slice(0, 6).map(t => <li><a href={`/${t.slug}`}>{t.name}</a></li>)}
+            <li><a href="/exam-form-ready">Exam Form Ready</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="fbottom">
+        <span>© {new Date().getFullYear()} PDFtoWordConverter.in · Made in Chennai, India</span>
+        <span><a href="/about">About</a> · <a href="/faq">FAQ</a> · <a href="/contact">Contact</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/blog">Guides</a></span>
+      </div>
+      <p class="small" style="margin-top:12px;color:#7d81a0">Not affiliated with Adobe, Microsoft or iLovePDF. Microsoft Word, Excel and PowerPoint are trademarks of Microsoft Corporation.</p>
+    </div>
+  </footer>
+  <script is:inline>
+    (function(){var b=document.querySelector('.menu-btn'),n=document.getElementById('nav');if(b)b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)});document.addEventListener('click',function(e){document.querySelectorAll('.nav details[open]').forEach(function(d){if(!d.contains(e.target))d.removeAttribute('open')})});})();
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+---
+import Base from "../layouts/Base.astro";
+import { TOOLS } from "../data/tools.mjs";
+---
+<Base title="Page not found" description="The page you were looking for doesn't exist." path="/404" noindex>
+  <section class="section"><div class="wrap prose" style="text-align:center">
+    <h1>Page not found</h1>
+    <p>The page may have moved. Try one of our most popular tools:</p>
+    <p class="chips" style="justify-content:center">{TOOLS.slice(0, 12).map(t => <a class="chip" href={`/${t.slug}`}>{t.name}</a>)}</p>
+    <p><a class="btn btn-primary" href="/">Go to homepage</a></p>
+  </div></section>
+</Base>

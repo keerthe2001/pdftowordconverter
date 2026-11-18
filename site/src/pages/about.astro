@@ -1,0 +1,26 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../data/tools.mjs";
+---
+<Base title="About Us – Free, Private PDF Tools Made in India" description="PDFtoWordConverter.in builds free PDF tools that run on your own device, using open-source engines like MuPDF, Ghostscript, Tesseract and LibreOffice." path="/about">
+  <section class="section"><div class="wrap prose">
+    <h1>About PDFtoWordConverter.in</h1>
+    <p>We build free PDF tools for everyday problems: a portal that wants one file under 200 KB, a bank statement you can't merge because of its password, a certificate that needs to be a PDF in five minutes.</p>
+    <h2>Private by design</h2>
+    <p>Most of our tools — merge, split, compress, OCR, sign, edit, redact, protect and more — run entirely inside your web browser using WebAssembly. Your documents are never uploaded to a server, so there is nothing for us to store, leak or sell. You can verify this yourself: open your browser's developer tools and watch the network tab while you use a tool.</p>
+    <p>A few conversions (Word, PowerPoint, Excel and HTML to PDF; PDF to Word, PowerPoint and Excel) need desktop-class software. For these, files are sent over HTTPS to our converter, processed in memory and deleted immediately after the result is returned.</p>
+    <h2>Built on the best open-source engines</h2>
+    <ul>
+      <li><strong>MuPDF</strong> by Artifex — rendering, page operations, redaction and encryption</li>
+      <li><strong>Ghostscript</strong> by Artifex — compression and PDF/A</li>
+      <li><strong>Tesseract</strong> — OCR with LSTM neural-network models, including 11 Indian languages</li>
+      <li><strong>LibreOffice</strong>, <strong>pdf2docx</strong> and <strong>Chromium</strong> — document conversions</li>
+    </ul>
+    <p>Because we use AGPL-licensed components, our own source code is public: <a href={SITE.github}>view it on GitHub</a>.</p>
+    <h2>Free, supported by ads</h2>
+    <p>There are no daily limits, no premium tier and no watermarks. The site is supported by unobtrusive advertising.</p>
+    <h2>Made in Chennai</h2>
+    <p>We're an independent project based in Chennai, India, focused on what Indian students, job seekers and applicants actually need — like <a href="/exam-form-ready">exam-ready photo and signature sizes</a>.</p>
+    <p>Questions or ideas for a new tool? <a href="/contact">Contact us</a>.</p>
+  </div></section>
+</Base>

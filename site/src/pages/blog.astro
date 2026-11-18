@@ -1,0 +1,12 @@
+---
+import Base from "../layouts/Base.astro";
+import { POSTS } from "../data/posts.mjs";
+const posts = [...POSTS].sort((a, b) => (b.updated || b.date).localeCompare(a.updated || a.date));
+---
+<Base title="PDF Guides & Tips – Merge, Compress, Convert, Sign" description="Practical, step-by-step guides for working with PDFs: merging, compressing to exact sizes, converting Word to PDF, signing, scanning with your phone and more." path="/blog">
+  <section class="section"><div class="wrap prose">
+    <h1>PDF guides &amp; tips</h1>
+    <p class="muted">Short, practical guides — written for job seekers, students and anyone filling online forms.</p>
+    <div class="post-list">{posts.map(p => <a class="post-card" href={`/blog/${p.slug}`}><h2>{p.title}</h2><p class="muted" style="margin:0">{p.description}</p></a>)}</div>
+  </div></section>
+</Base>

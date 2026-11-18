@@ -1,0 +1,57 @@
+---
+import Base from "../layouts/Base.astro";
+import { EXAMS } from "../data/exams.mjs";
+import { SITE } from "../data/tools.mjs";
+const { exam, path, title, description, h1, sub } = Astro.props;
+const data = { exams: EXAMS, initial: exam?.id || null };
+const faq = exam ? exam.items.map(it => [
+  `What is the ${exam.short} ${it.label.toLowerCase().replace(/ \(.*\)/, "")} size?`,
+  it.kind === "pdf" ? `${it.label}: PDF between ${it.minKB} KB and ${it.maxKB} KB.` : `${it.label}: ${it.w} × ${it.h} pixels, ${it.minKB}–${it.maxKB} KB, JPG/JPEG. ${(it.rules || []).join(". ")}. Source: ${exam.source}.`,
+]) : [
+  ["What does Exam Form Ready do?", "It turns your photo, signature, thumb impression, handwritten declaration and certificates into files that meet each exam portal's exact pixel size, KB range and format — and checks them before you download."],
+  ["Which exams are supported?", `${EXAMS.map(e => e.short).join(", ")}, plus a Custom mode where you enter any width, height and KB range.`],
+  ["Why is my signature padded to reach the minimum KB?", "A clean signature at small pixel sizes is naturally only a few KB. Portals reject files below their minimum, so we add invisible padding to the JPG file. The image itself is unchanged and the file remains a valid JPEG."],
+  ["Are my photos uploaded?", "No. All processing happens in your browser."],
+];
+const jsonld = [
+  { "@context": "https://schema.org", "@type": "WebApplication", name: `Exam Form Ready${exam ? " – " + exam.short : ""}`, url: SITE.url + path, applicationCategory: "UtilitiesApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "INR" } },
+  { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) },
+];
+---
+<Base title={title} description={description} path={path} jsonld={jsonld}>
+  <section class="hero">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> › {exam ? <><a href="/exam-form-ready">Exam Form Ready</a> › {exam.short}</> : "Exam Form Ready"}</nav>
+      <h1>{h1}</h1>
+      <p class="sub">{sub}</p>
+      <ul class="trust"><li>Exact pixels &amp; KB</li><li>Checked before download</li><li>Photos never uploaded</li></ul>
+      <div id="exam-app"><noscript>This tool needs JavaScript.</noscript></div>
+      <script type="application/json" id="exam-data" set:html={JSON.stringify(data)} />
+      <script type="module" src="/app/exam.js"></script>
+    </div>
+  </section>
+  <section class="section"><div class="wrap prose">
+    {exam ? (
+      <>
+        <h2>{exam.short} photo &amp; signature specifications</h2>
+        <table class="compare-table"><thead><tr><th>Upload</th><th>Size (pixels)</th><th>File size</th><th>Format</th></tr></thead>
+          <tbody>{exam.items.map(it => <tr><td>{it.label}</td><td>{it.kind === "pdf" ? "—" : `${it.w} × ${it.h}`}</td><td>{it.minKB}–{it.maxKB} KB</td><td>{it.kind === "pdf" ? "PDF" : "JPG/JPEG"}</td></tr>)}</tbody></table>
+        <p class="small muted">{exam.note} Source: {exam.source}. Last verified {exam.verified}. Always confirm with the official notification for your recruitment cycle.</p>
+      </>
+    ) : (
+      <>
+        <h2>Why exam uploads get rejected</h2>
+        <p>Government and bank exam portals check three things automatically: <strong>pixel dimensions</strong>, <strong>file size in KB</strong> (both a minimum and a maximum), and <strong>format</strong>. A phone photo is 3,000–5,000 KB; a signature must often be just 10–20 KB. Most compressors only make files smaller — they don't guarantee a window like 20–50 KB, and they don't check dimensions.</p>
+        <p>Exam Form Ready does all three at once and shows a ✓ for each rule before you download. For PDFs (certificates, marksheets), it compresses to the portal's KB limit while keeping text readable.</p>
+        <h2>Supported exams</h2>
+        <ul>{EXAMS.map(e => <li><a href={`/exam-form-ready/${e.id}`}>{e.name}</a></li>)}</ul>
+      </>
+    )}
+    <h2>How it works</h2>
+    <ol class="steps"><li>Pick your exam (or Custom size).</li><li>Choose your photo, signature or document for each item.</li><li>Adjust the crop for photos; signatures are cleaned and trimmed automatically.</li><li>Check the ✓ list and download each file — or all of them as a ZIP.</li></ol>
+    <h2>Frequently asked questions</h2>
+    <div class="faq">{faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div>
+    <h2>Related tools</h2>
+    <ul><li><a href="/compress-pdf">Compress PDF to an exact size</a></li><li><a href="/jpg-to-pdf">JPG to PDF</a></li><li><a href="/scan-to-pdf">Scan to PDF with your phone</a></li><li><a href="/merge-pdf">Merge PDF</a></li></ul>
+  </div></section>
+</Base>

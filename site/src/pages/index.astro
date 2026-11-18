@@ -1,0 +1,67 @@
+---
+import Base from "../layouts/Base.astro";
+import ToolIcon from "../components/ToolIcon.astro";
+import { TOOLS, CATEGORIES, SITE } from "../data/tools.mjs";
+const faq = [
+  ["Are these PDF tools really free?", "Yes. Every tool is free with no signup, no watermark and no daily limit. The site is supported by ads."],
+  ["Are my files uploaded?", "Most tools (merge, split, compress, OCR, sign, edit, protect and more) run entirely in your browser, so files never leave your device. Only Word/PowerPoint/Excel/HTML conversions and PDF to Word/PowerPoint/Excel use our server, where files are processed in memory and deleted immediately."],
+  ["Can I compress a PDF to an exact size like 100 KB?", "Yes — Compress PDF has an Exact size mode. Enter your limit in KB or MB and we return the sharpest version that fits."],
+  ["Do you support Indian languages for OCR?", "Yes: Hindi, Tamil, Telugu, Kannada, Malayalam, Bengali, Marathi, Gujarati, Punjabi, Odia and Urdu, plus English and other languages."],
+  ["Does it work on mobile?", "Yes, on Android and iPhone browsers. Scan to PDF can use your phone camera directly."],
+];
+const jsonld = [{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }];
+---
+<Base title="PDFtoWordConverter – Free PDF Tools: Merge, Compress, Convert" description="Free, private PDF tools: merge, split, compress to an exact KB size, PDF to Word, OCR in Indian languages, sign and edit. No upload, no limits." path="/" jsonld={jsonld}>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Every PDF tool you need.<br />Free, and private by design.</h1>
+      <p class="sub">Merge, split, compress to an exact KB size, convert, OCR, sign and edit PDFs. Most tools run right in your browser — your files never leave your device.</p>
+      <ul class="trust"><li>No signup</li><li>No watermark</li><li>No daily limits</li><li>Open source</li></ul>
+      <p style="margin-top:22px"><a class="btn btn-primary btn-xl" href="#tools">Choose a tool</a> <a class="btn btn-ghost btn-xl" href="/exam-form-ready">Exam Form Ready</a></p>
+    </div>
+  </section>
+  <section class="section" id="tools">
+    <div class="wrap">
+      {CATEGORIES.map(c => (
+        <>
+          <h2 class="cat-title" id={c.id}>{c.name}</h2>
+          <div class="tool-grid-home">
+            {TOOLS.filter(t => t.category === c.id).map(t => <a class="tool-tile" href={`/${t.slug}`}><ToolIcon icon={t.icon} /><div><strong>{t.name}</strong><span>{t.short}</span></div></a>)}
+            {c.id === "optimize" && <a class="tool-tile" href="/exam-form-ready"><ToolIcon icon="exam" /><div><strong>Exam Form Ready</strong><span>Photo, signature & documents in exact exam KB and pixel sizes.</span></div></a>}
+          </div>
+        </>
+      ))}
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="wrap">
+      <div class="callout">
+        <div>
+          <h2>Exam Form Ready</h2>
+          <p>Applying for IBPS, SSC, UPSC, RRB, NEET or TNPSC? Upload your photo, signature, thumb impression and certificates once — we resize them to the exact pixels and KB range each portal demands, and show a ✓ check before you download.</p>
+          <a class="btn btn-primary" href="/exam-form-ready">Prepare my documents</a>
+        </div>
+        <ul class="checks"><li class="ok">✓ 48.6 KB (allowed 20–50 KB)</li><li class="ok">✓ 200 × 230 pixels</li><li class="ok">✓ JPG format</li><li class="ok">✓ File name: photo.jpg</li></ul>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <h2 style="text-align:center">Why people switch to us</h2>
+      <div class="feature-band">
+        <div class="feature"><b>🔒 Your files stay with you</b>Merging, compressing, OCR, signing and 20+ other tools run on your device with WebAssembly. Nothing is uploaded.</div>
+        <div class="feature"><b>🎯 Exact-size compression</b>Type "100 KB" and get the sharpest PDF that fits — not three vague levels.</div>
+        <div class="feature"><b>🇮🇳 Indian languages</b>OCR in Hindi, Tamil, Telugu, Kannada, Malayalam, Bengali, Marathi and more.</div>
+        <div class="feature"><b>♾️ No limits, no premium wall</b>No daily task limits. PDF/A, OCR and batch processing are free.</div>
+        <div class="feature"><b>⚙️ Professional engines</b>MuPDF, Ghostscript, Tesseract and LibreOffice — the same open-source engines behind commercial PDF software.</div>
+        <div class="feature"><b>🧾 Open source</b>Don't trust, verify: the code is public on GitHub.</div>
+      </div>
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="wrap prose">
+      <h2>Frequently asked questions</h2>
+      <div class="faq">{faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div>
+    </div>
+  </section>
+</Base>

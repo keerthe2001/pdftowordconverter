@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: pdftowordconverter-api
+    runtime: docker
+    plan: free
+    region: singapore
+    healthCheckPath: /health
+    envVars:
+      - key: ALLOWED_ORIGINS
+        value: https://pdftowordconverter.in,https://www.pdftowordconverter.in
+      - key: MAX_MB
+        value: "20"
+      - key: RATE_PER_HOUR
+        value: "60"

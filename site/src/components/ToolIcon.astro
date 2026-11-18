@@ -1,0 +1,10 @@
+---
+const { icon, label } = Astro.props;
+const C = { merge: ["#e5483a", "M"], split: ["#e5483a", "S"], remove: ["#e5483a", "−"], extract: ["#e5483a", "E"], organize: ["#e5483a", "O"], rotate: ["#e5483a", "↻"], scan: ["#e5483a", "▣"],
+  compress: ["#12805c", "Z"], repair: ["#12805c", "R"], ocr: ["#12805c", "T"],
+  word: ["#2b579a", "W"], ppt: ["#d24726", "P"], excel: ["#217346", "X"], jpg: ["#c9a100", "J"], html: ["#6b4cc9", "</>"], pdfa: ["#555", "A"],
+  edit: ["#7b3fe4", "✎"], numbers: ["#7b3fe4", "#"], watermark: ["#7b3fe4", "W"], crop: ["#7b3fe4", "⌗"],
+  sign: ["#1565c0", "✍"], lock: ["#1565c0", "🔒"], unlock: ["#1565c0", "🔓"], redact: ["#1565c0", "▮"], compare: ["#1565c0", "≠"], exam: ["#ff6a3d", "KB"] };
+const [bg, ch] = C[icon] || ["#3346d3", "•"];
+---
+<span class="ti" style={`background:${bg}`} aria-hidden="true">{ch}</span>

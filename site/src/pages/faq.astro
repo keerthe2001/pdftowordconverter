@@ -1,0 +1,23 @@
+---
+import Base from "../layouts/Base.astro";
+const faq = [
+  ["Is PDFtoWordConverter.in really free?", "Yes. All tools are free with no signup, no watermark and no daily task limits. We're supported by ads."],
+  ["Do I need to create an account?", "No. Just open a tool and select your file."],
+  ["Are my files safe?", "Most tools process files entirely on your device — they are never uploaded. Office and PDF-to-Office conversions use our server over HTTPS; files are processed in memory and deleted immediately, never stored or logged."],
+  ["Which tools upload files?", "Only Word to PDF, PowerPoint to PDF, Excel to PDF, HTML to PDF, PDF to Word, PDF to PowerPoint and PDF to Excel. Every other tool runs in your browser."],
+  ["Is there a file size limit?", "Browser tools have no fixed limit — only your device's memory (typically hundreds of MB on a computer). Server conversions accept up to 20 MB (10 MB for HTML)."],
+  ["Will my formatting stay intact when converting Word to PDF?", "Yes, in almost all documents. We use LibreOffice with metric-compatible Microsoft fonts so line breaks and page counts match Word."],
+  ["Can I use the tools on a phone or tablet?", "Yes — on Android and iOS browsers. Very large files are best handled on a computer."],
+  ["Do you support password-protected PDFs?", "Yes. You'll be asked for the password, which is used only on your device. Use Unlock PDF to save a copy without the password, or Protect PDF to add one."],
+  ["Why does the first Word/PDF conversion take longer?", "Our free conversion server sleeps when idle and takes about 30–60 seconds to wake up. After that, conversions are fast."],
+  ["Which browsers are supported?", "Recent versions of Chrome, Edge, Firefox, Safari and Samsung Internet. The tools need WebAssembly, which all modern browsers support."],
+  ["How can I request a new tool?", "Email us or open an issue on GitHub — we prioritise tools people ask for."],
+];
+const jsonld = [{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }];
+---
+<Base title="FAQ – Free PDF Tools" description="Answers about privacy, file limits, supported browsers, password-protected PDFs and conversions on PDFtoWordConverter.in." path="/faq" jsonld={jsonld}>
+  <section class="section"><div class="wrap prose">
+    <h1>Frequently asked questions</h1>
+    <div class="faq">{faq.map(([q, a]) => <details open><summary>{q}</summary><p>{a}</p></details>)}</div>
+  </div></section>
+</Base>

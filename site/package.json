@@ -1,0 +1,43 @@
+{
+  "name": "pdftowordconverter-site",
+  "version": "1.0.0",
+  "scripts": {
+    "vendor": "node scripts/vendor.mjs",
+    "dev": "node scripts/vendor.mjs && node scripts/static.mjs && astro dev",
+    "build": "node scripts/vendor.mjs && node scripts/static.mjs && astro build",
+    "preview": "astro preview"
+  },
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.5",
+    "@fontsource/dancing-script": "^5.3.0",
+    "@fontsource/great-vibes": "^5.3.0",
+    "@fontsource/inter": "^5.3.0",
+    "@okathira/ghostpdl-wasm": "^1.1.0",
+    "@tesseract.js-data/ara": "^1.0.0",
+    "@tesseract.js-data/ben": "^1.0.0",
+    "@tesseract.js-data/deu": "^1.0.0",
+    "@tesseract.js-data/eng": "^1.0.0",
+    "@tesseract.js-data/fra": "^1.0.0",
+    "@tesseract.js-data/guj": "^1.0.0",
+    "@tesseract.js-data/hin": "^1.0.0",
+    "@tesseract.js-data/kan": "^1.0.0",
+    "@tesseract.js-data/mal": "^1.0.0",
+    "@tesseract.js-data/mar": "^1.0.0",
+    "@tesseract.js-data/ori": "^1.0.0",
+    "@tesseract.js-data/pan": "^1.0.0",
+    "@tesseract.js-data/spa": "^1.0.0",
+    "@tesseract.js-data/tam": "^1.0.0",
+    "@tesseract.js-data/tel": "^1.0.0",
+    "@tesseract.js-data/urd": "^1.0.0",
+    "astro": "^7.4.12",
+    "fflate": "^0.8.3",
+    "mupdf": "^1.28.6",
+    "tesseract.js": "^7.0.0"
+  },
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  }
+}

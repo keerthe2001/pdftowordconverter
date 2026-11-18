@@ -1,0 +1,11 @@
+---
+import ExamPage from "../../components/ExamPage.astro";
+import { EXAMS } from "../../data/exams.mjs";
+export function getStaticPaths() { return EXAMS.map(e => ({ params: { exam: e.id }, props: { exam: e } })); }
+const { exam } = Astro.props;
+const items = exam.items.map(i => i.label.replace(/ \(.*\)/, "").toLowerCase());
+---
+<ExamPage exam={exam} path={`/exam-form-ready/${exam.id}`}
+  title={`${exam.short} Photo & Signature Size 2026 – Resize to Exact KB`}
+  description={`${exam.short} photo & signature size: exact pixels and KB from the official notification. Resize free on your device and get a ✓ check before you upload.`}
+  h1={`${exam.short} photo & signature resizer`} sub={`Get your ${items.join(", ")} ready for ${exam.name} — exact size, checked before download.`} />

@@ -1,0 +1,13 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../data/tools.mjs";
+---
+<Base title="Contact Us" description="Contact PDFtoWordConverter.in for help, bug reports, tool requests or business enquiries." path="/contact">
+  <section class="section"><div class="wrap prose">
+    <h1>Contact us</h1>
+    <p>We read every message. For the fastest help with a tool, tell us which tool you used, your browser and device, and what happened.</p>
+    <p><strong>Email:</strong> <a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+    <p><strong>Bugs and feature requests:</strong> <a href={`${SITE.github}/issues`}>open an issue on GitHub</a>.</p>
+    <p class="muted">Please don't email us confidential documents. Our tools work without sending files to us.</p>
+  </div></section>
+</Base>

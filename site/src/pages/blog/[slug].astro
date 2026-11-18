@@ -1,0 +1,24 @@
+---
+import Base from "../../layouts/Base.astro";
+import { POSTS } from "../../data/posts.mjs";
+import { SITE } from "../../data/tools.mjs";
+export function getStaticPaths() { return POSTS.map(p => ({ params: { slug: p.slug }, props: { p } })); }
+const { p } = Astro.props;
+const path = `/blog/${p.slug}`;
+const more = POSTS.filter(x => x.slug !== p.slug).slice(0, 5);
+const jsonld = [
+  { "@context": "https://schema.org", "@type": "Article", headline: p.title, description: p.description, datePublished: p.date, dateModified: p.updated || p.date, author: { "@type": "Organization", name: SITE.name, url: SITE.url }, publisher: { "@type": "Organization", name: SITE.name, logo: { "@type": "ImageObject", url: `${SITE.url}/icon-512.png` } }, mainEntityOfPage: SITE.url + path },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: SITE.url + "/" }, { "@type": "ListItem", position: 2, name: "Guides", item: SITE.url + "/blog" }, { "@type": "ListItem", position: 3, name: p.title, item: SITE.url + path }] },
+];
+const fmt = d => new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+---
+<Base title={p.title} description={p.description} path={path} jsonld={jsonld} ogType="article">
+  <article class="section"><div class="wrap prose">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/blog">Guides</a></nav>
+    <h1>{p.title}</h1>
+    <p class="post-meta">{p.updated ? `Updated ${fmt(p.updated)}` : fmt(p.date)} · {SITE.name} team</p>
+    <Fragment set:html={p.body} />
+    <h2>More guides</h2>
+    <ul>{more.map(m => <li><a href={`/blog/${m.slug}`}>{m.title}</a></li>)}</ul>
+  </div></article>
+</Base>

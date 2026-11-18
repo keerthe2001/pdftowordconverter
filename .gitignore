@@ -1,0 +1,11 @@
+node_modules/
+site/dist/
+site/.astro/
+site/public/vendor/
+site/public/fonts/
+site/public/robots.txt
+site/public/_redirects
+site/public/_headers
+__pycache__/
+*.log
+.DS_Store

@@ -1,0 +1,26 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../data/tools.mjs";
+---
+<Base title="Terms of Service" description="Terms of service for the free PDF tools on PDFtoWordConverter.in: acceptable use, no-warranty terms, exam preset disclaimer and open-source licences." path="/terms">
+  <section class="section"><div class="wrap prose">
+    <h1>Terms of Service</h1>
+    <p class="muted">Last updated: 16 November 2026</p>
+    <h2>1. The service</h2>
+    <p>{SITE.domain} provides free online tools to convert, edit and manage PDF and document files. By using the site you agree to these terms.</p>
+    <h2>2. Your files and responsibility</h2>
+    <p>You must have the right to process any file you use with our tools. Do not use the service to remove protection from documents you are not authorised to access, to infringe copyright, or for any unlawful purpose. Unlock PDF works only with passwords you already know.</p>
+    <h2>3. No warranty</h2>
+    <p>The tools are provided "as is" without warranties of any kind. Always check the output — especially before submitting it to an exam portal, court, employer or government office. Exam size presets are based on published notifications and may change; you are responsible for confirming requirements in the official notice.</p>
+    <h2>4. Limitation of liability</h2>
+    <p>To the maximum extent permitted by law, we are not liable for any loss arising from the use of, or inability to use, the service, including rejected applications, data loss or corrupted files. Keep a copy of your originals.</p>
+    <h2>5. Fair use</h2>
+    <p>Automated or bulk use of our conversion server that degrades the service for others is not allowed. We may rate-limit or block such use.</p>
+    <h2>6. Open-source software</h2>
+    <p>The site uses open-source components including MuPDF and Ghostscript (AGPL-3.0), Tesseract (Apache-2.0), fflate (MIT), LibreOffice (MPL-2.0) and pdf2docx. The site's source code is available on <a href={SITE.github}>GitHub</a>.</p>
+    <h2>7. Governing law</h2>
+    <p>These terms are governed by the laws of India, with courts at Chennai, Tamil Nadu having jurisdiction.</p>
+    <h2>8. Contact</h2>
+    <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+  </div></section>
+</Base>
