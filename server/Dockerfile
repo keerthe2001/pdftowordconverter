@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       fonts-crosextra-carlito fonts-crosextra-caladea fonts-liberation2 fonts-dejavu-core \
       fonts-noto-core fonts-noto-ui-core \
       ocrmypdf tesseract-ocr-eng tesseract-ocr-hin tesseract-ocr-tam \
-      ca-certificates tini \
+      ca-certificates tini libatomic1 \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY requirements.txt .
