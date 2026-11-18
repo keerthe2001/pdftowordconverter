@@ -236,6 +236,10 @@ details.adv summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
 .prose { max-width: 760px; margin: 0 auto; }
 .prose h2 { margin-top: 1.6em; }
 .prose li { margin-bottom: .4em; }
+.prose img { display: block; height: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+.prose figure { margin: 24px 0; }
+.prose figcaption { color: var(--muted); font-size: .9rem; margin-top: 8px; }
+.post-hero { margin-bottom: 24px; }
 .steps { counter-reset: s; list-style: none; padding: 0; display: grid; gap: 12px; }
 .steps li { counter-increment: s; display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
 .steps li::before { content: counter(s); flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 800; display: grid; place-items: center; }

@@ -1,7 +1,8 @@
 ---
 import "../styles/global.css";
 import { SITE, CATEGORIES, TOOLS } from "../data/tools.mjs";
-const { title, description, path = Astro.url.pathname, jsonld = [], noindex = false, ogType = "website", api = false } = Astro.props;
+const { title, description, path = Astro.url.pathname, jsonld = [], noindex = false, ogType = "website", api = false, image = "/og.png" } = Astro.props;
+const ogImage = SITE.url + image;
 const clean = path === "/" ? "/" : path.replace(/\/$/, "").replace(/\.html$/, "");
 const canonical = SITE.url + (clean === "/" ? "/" : clean);
 const fullTitle = title.includes(SITE.name) || title.length + SITE.name.length + 3 > 64 ? title : `${title} | ${SITE.name}`;
@@ -30,12 +31,12 @@ const ADS_ENABLED = false; // flip to true after AdSense approval
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonical} />
-  <meta property="og:image" content={`${SITE.url}/og.png`} />
+  <meta property="og:image" content={ogImage} />
   <meta property="og:locale" content="en_IN" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={fullTitle} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={`${SITE.url}/og.png`} />
+  <meta name="twitter:image" content={ogImage} />
   <meta name="google-site-verification" content="otMnB5Z-WkPak5aqTHya8Gz4LVYO43ZoIBcdHsEFXyA" />
   <meta name="google-site-verification" content="9NTpVNrx7RsOnUejRHSwBx9rSG1nIHGwix8UnbGskZ4" />
   <meta name="google-adsense-account" content={ADSENSE} />
