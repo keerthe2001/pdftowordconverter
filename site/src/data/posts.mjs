@@ -432,4 +432,8 @@ export const REDIRECTS = {
   "/blog/compare-two-pdf-versions-and-spot-changes-in-seconds": "/compare-pdf",
   "/blog/convert-powerpoint-slides-to-pdf-free-online-no-sign-up-100-private": "/powerpoint-to-pdf",
   "/blog/add-a-watermark-to-a-pdf-without-signing-up": "/watermark-pdf",
+  "/blog/share-documents-securely-without-uploading-to-the-cloud": "/protect-pdf",
+  "/blog/how-to-crop-pdf-margins-like-a-pro-quick-tutorial-for-accountants": "/crop-pdf",
+  "/blog/how-to-reorder-and-rotate-pdf-pages-for-a-job-application": "/organize-pdf",
+  "/blog/$slug": "/blog",
 };
