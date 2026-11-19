@@ -3,6 +3,83 @@ const T = (slug, name) => `<div class="cta-box"><strong>Try it now:</strong> <a 
 
 export const POSTS = [
   {
+    slug: "convert-bank-statement-pdf-to-excel", tool: "pdf-to-excel", date: "2026-11-19",
+    title: "Bank Statement PDF to Excel: Convert, Clean Up and Check",
+    description: "Turn a bank statement PDF into an Excel sheet for free: unlock it, convert it, join the page sheets and check that the closing balance still adds up.",
+    image: { src: "/images/blog/convert-bank-statement-pdf-to-excel/bank-statement-pdf-to-excel-hero.webp", alt: "A sample bank statement PDF with four transactions next to the same rows in an Excel sheet", width: 1200, height: 630 },
+    body: `
+<p>Copying transactions out of a statement by hand is slow and easy to get wrong. Converting the <strong>bank statement PDF to Excel</strong> gives you rows you can sort, filter and total, whether you are tracking expenses, preparing figures for your tax return or sending a loan agent a summary. The conversion itself takes a minute. What needs more care comes after: joining the pages, fixing the columns that come out as text, and proving that no transaction went missing.</p>
+<p>This guide uses our free <a href="/pdf-to-excel">PDF to Excel</a> converter. We tested it on a made-up four-page statement with 60 transactions, and the results below come from that test.</p>
+<h2>Before you start: three quick checks</h2>
+<ul>
+<li><strong>Is it password-protected?</strong> Statements sent by email often are. The converter cannot open a locked file, so you will see "Conversion failed. The file may be damaged or password-protected." Remove the password first (step 1 below). You need to know the password; nothing can skip that.</li>
+<li><strong>Can you select the text?</strong> Open the PDF and try to highlight a narration with your mouse. If you can, it is a text PDF and converts well. If the whole page highlights like a picture, it is a scan. Run <a href="/ocr-pdf">OCR PDF</a> on it first, and expect more cleanup afterwards.</li>
+<li><strong>Does the table have grid lines?</strong> Look for lines between the rows and columns. This one detail decides how clean your Excel file will be, as the test further down shows.</li>
+</ul>
+<h2>Convert a bank statement PDF to Excel in 4 steps</h2>
+<ol>
+<li><strong>Unlock the statement.</strong> Open <a href="/unlock-pdf">Unlock PDF</a>, select the file, type the password and download the unlocked copy. This step runs in your browser, so the password is not sent anywhere. Our guide to <a href="/blog/remove-a-password-from-your-own-pdf-free-private-no-sign-up">removing a password from your own PDF</a> has more detail.</li>
+<li><strong>Optional: put several months together.</strong> If you need a full year, combine the unlocked monthly files with <a href="/merge-pdf">Merge PDF</a> so you convert once instead of twelve times. Keep the result under 20 MB, which is the converter's upload limit.</li>
+<li><strong>Convert.</strong> Open <a href="/pdf-to-excel">PDF to Excel</a>, select the unlocked file and click <strong>Convert to Excel</strong>. The converter runs on a free server that sleeps when idle, so the first conversion can take 30 to 60 seconds while it wakes up.</li>
+<li><strong>Download the .xlsx file</strong> and open it in Excel, Google Sheets or LibreOffice Calc.</li>
+</ol>
+<figure><img src="/images/blog/convert-bank-statement-pdf-to-excel/pdf-to-excel-tool-with-sample-statement.webp" alt="The PDF to Excel tool with a sample bank statement selected and the Convert to Excel button" width="1200" height="630" loading="lazy" decoding="async"><figcaption>The PDF to Excel tool with our made-up sample statement loaded.</figcaption></figure>
+<div class="cta-box"><strong>Try it now:</strong> <a href="/pdf-to-excel">PDF to Excel</a> — free, no signup. The file is converted on our server and deleted right after.</div>
+<h2>What you get: one sheet per page</h2>
+<p>The converter looks for tables on every page. It tries ruled tables (ones drawn with lines) first and falls back to text alignment when it finds none. Each table it finds becomes its own sheet, named like <em>Page 1 Table 1</em>, with the first row in bold.</p>
+<p>A few details matter for statements:</p>
+<ul>
+<li>Amounts such as <code>1,25,000.00</code> are stored as real numbers. Commas, the ₹ sign and "Rs." are removed first, so Indian digit grouping is not a problem.</li>
+<li>Anything with letters attached stays as text. A balance written as <code>47,470.75 Cr</code> will not add up until you fix it (see the cleanup section).</li>
+<li>Whole numbers that start with 0, like some account or cheque numbers, are kept as text so the leading zero is not lost.</li>
+<li>Long narrations that wrap onto two or three lines inside one table cell stay in one Excel cell, with line breaks.</li>
+<li>If no table is found anywhere, you get a single sheet called <em>Text</em> listing every line of the PDF with its page number. That usually means the PDF is a scan, or it has no table structure the converter can read.</li>
+</ul>
+<h2>Our test: grid lines make the difference</h2>
+<p>We created a fictional statement for "Example Bank" with 60 UPI, NEFT and ATM entries over four pages, then made two versions: one with grid lines around every cell and one without any lines. Both went through the same conversion code the site uses.</p>
+<ul>
+<li><strong>With grid lines:</strong> 4 sheets and 64 rows, which is exactly 60 transactions plus the repeated header on each page. Every withdrawal and deposit came out as a number, and the account details printed above the table were not mixed in.</li>
+<li><strong>Without grid lines:</strong> 194 rows for the same 60 transactions. Each wrapped narration spilled into one or two extra rows, the column headings were split across three rows, and the account details at the top of page 1 ended up inside the first sheet.</li>
+</ul>
+<figure><img src="/images/blog/convert-bank-statement-pdf-to-excel/ruled-vs-unruled-statement-excel-output.webp" alt="Excel output from the same sample statement with grid lines and without grid lines, showing split rows in the second version" width="1200" height="722" loading="lazy" decoding="async"><figcaption>Same data, different layout: the statement with grid lines gives one row per transaction.</figcaption></figure>
+<p>If your statement has no grid lines, check whether your net banking offers the statement as an Excel or CSV download. When that option exists it is cleaner than converting any PDF. If it does not, convert anyway and expect to join the split narration rows by hand, or test a single page first with <a href="/extract-pages">Extract Pages</a> to see what you are dealing with.</p>
+<h2>Clean up the sheet in Excel</h2>
+<p>These steps assume the layout from our test: Date in column A, Narration in B, reference number in C, withdrawals in D, deposits in E and balance in F. Adjust the letters to match your file.</p>
+<ol>
+<li><strong>Put all pages on one sheet.</strong> Add a new sheet and paste the rows from each page sheet below one another. Then filter column A, tick only "Date" (the repeated heading), delete those rows and clear the filter. Put one heading row back at the top.</li>
+<li><strong>Turn the balance into a number.</strong> In G2, enter <code style="overflow-wrap:anywhere">=IF(RIGHT(F2,2)="Dr",-1,1)*VALUE(TRIM(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(F2,"Cr",""),"Dr",""),",","")))</code> and fill it down. Credit balances become positive and debit balances negative.</li>
+<li><strong>Fix text dates.</strong> If the dates sit on the left of the cell, Excel is treating them as text. For a DD-MM-YYYY date, <code style="overflow-wrap:anywhere">=DATE(RIGHT(A2,4),MID(A2,4,2),LEFT(A2,2))</code> gives a real date you can sort by month.</li>
+<li><strong>Flatten the narration.</strong> <code style="overflow-wrap:anywhere">=SUBSTITUTE(B2,CHAR(10)," ")</code> replaces the line breaks with spaces. Where the bank's PDF broke a word in the middle, you will see a stray space, such as "Paym ent", but names and UPI IDs stay searchable.</li>
+<li><strong>Show reference numbers in full.</strong> UPI references are 12 digits, and Excel's General format switches to exponential notation (like 4.87595E+11) for numbers with 12 or more digits, according to <a href="https://support.microsoft.com/en-us/Excel/display-numbers-in-scientific-exponential-notation" rel="noopener">Microsoft's guide</a>. Select the column, open Format Cells, choose Number and set 0 decimal places. The digits are not lost, since Excel keeps up to 15.</li>
+</ol>
+<figure><img src="/images/blog/convert-bank-statement-pdf-to-excel/statement-cleanup-formulas-balance-check.webp" alt="Combined statement sheet with formula columns for balance and date, plus a balance check showing TRUE" width="1200" height="441" loading="lazy" decoding="async"><figcaption>The cleaned sample sheet. The balance check confirms all 60 rows are present.</figcaption></figure>
+<h2>Check that nothing went missing</h2>
+<p>A converted statement looks complete even when a row has dropped out, so do this check every time. It takes two minutes:</p>
+<ol>
+<li>Type the opening balance from the PDF into a spare cell.</li>
+<li>Add the total deposits and subtract the total withdrawals: <code style="overflow-wrap:anywhere">=opening+SUM(E2:E61)-SUM(D2:D61)</code>, using your own last row.</li>
+<li>Compare the result with the closing balance printed on the statement, or with the last value in your balance column.</li>
+<li>Run <code style="overflow-wrap:anywhere">=COUNT(D2:D61)+COUNT(E2:E61)</code>. On a statement where each row is either a withdrawal or a deposit, this should equal the number of transactions.</li>
+</ol>
+<p>In our test, opening balance ₹48,250.75 plus ₹91,298.00 in deposits minus ₹37,991.00 in withdrawals gave ₹1,01,557.75, which matched the closing balance, and the count came to 60. If your numbers do not match, the usual cause is an amount stored as text, because SUM skips text cells. Look for cells that sit on the left, or that carry a "Dr", "Cr" or bracket.</p>
+<h2>Common problems and fixes</h2>
+<ul>
+<li><strong>"Conversion failed" straight away:</strong> the file is almost always still password-protected. Unlock it first and convert the unlocked copy.</li>
+<li><strong>"File too large":</strong> the limit is 20 MB. Convert fewer months at a time, or split the file with <a href="/split-pdf">Split PDF</a>.</li>
+<li><strong>Only a "Text" sheet:</strong> no table was detected. If the statement is a scan, run OCR PDF first.</li>
+<li><strong>Narrations spread over several rows:</strong> the statement has no grid lines. Join the pieces by hand, or look for an Excel or CSV download from your bank.</li>
+<li><strong>Totals look too small:</strong> some amounts are text. Find them with the COUNT check above.</li>
+</ul>
+<h2>Privacy: what happens to your statement</h2>
+<p>Unlock PDF, Merge PDF, Extract Pages and OCR PDF all run in your browser. PDF to Excel is different: the file is uploaded to our conversion server, processed in a temporary folder and deleted as soon as the Excel file is sent back. If you would rather not upload your account number at all, remove the account details at the top of the first page with <a href="/redact-pdf">Redact PDF</a> before converting. In our test, the version with grid lines left the account details out of the Excel file anyway, but the version without grid lines included them.</p>
+${T("unlock-pdf", "Unlock PDF")}
+<h2>FAQ</h2>
+<p><strong>Is it free?</strong> Yes. There is no signup and no watermark on the Excel file.</p>
+<p><strong>Will it work with my bank?</strong> The converter does not use bank-specific templates. It reads the table layout, so what matters is whether the statement is a text PDF and whether it has grid lines. Try one page first if you are unsure.</p>
+<p><strong>Can I convert a credit card statement the same way?</strong> Usually, yes. The same steps work for any statement laid out as a table, as long as it is a text PDF rather than a scan.</p>
+<p><strong>Why are there several sheets?</strong> Each table on each page becomes its own sheet. Combine them as shown in the cleanup section.</p>`,
+  },
+  {
     slug: "how-to-merge-multiple-pdfs-into-one-file-free-fast", tool: "merge-pdf", date: "2026-11-16",
     title: "How to Merge Multiple PDFs into One File (Free & Fast)",
     description: "Combine several PDFs into one file in the right order — free, without uploading, on phone or computer. Step-by-step guide with tips for job and exam applications.",
