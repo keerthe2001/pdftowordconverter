@@ -35,7 +35,7 @@ Licence: AGPL-3.0 (required because MuPDF and Ghostscript are AGPL). Keep this r
 2. At your domain registrar, replace the nameservers with Cloudflare's. This takes from a few minutes to a few hours.
 3. Pages project → **Custom domains** → add `pdftowordconverter.in` and `www.pdftowordconverter.in`.
 4. In Lovable, disconnect the custom domain from the old project.
-5. Optional: **Email Routing** (free) → forward `hello@pdftowordconverter.in` to your Gmail. This is the address on the Contact page.
+5. Optional: **Email Routing** (free) → forward an address such as `hello@pdftowordconverter.in` to your Gmail, then set `SITE.email` in `site/src/data/tools.mjs` to it. The Contact, Privacy and Terms pages show `SITE.email`.
 
 ## 4. Conversion server → Render
 

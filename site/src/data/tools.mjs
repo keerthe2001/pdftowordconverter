@@ -8,7 +8,7 @@ export const SITE = {
   tagline: "Free PDF tools that run on your device",
   converterApi: "https://pdftowordconverter-api.onrender.com",
   github: "https://github.com/keerthe2001/pdftowordconverter",
-  email: "hello@pdftowordconverter.in",
+  email: "sathyasree1500@gmail.com",
 };
 
 export const CATEGORIES = [
