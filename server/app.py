@@ -2,6 +2,7 @@
 Designed for a 512 MB free instance: one conversion at a time, strict size/time limits,
 files kept only in a per-request temp dir that is always deleted."""
 import asyncio, ipaddress, os, re, shutil, socket, subprocess, tempfile, time, uuid
+from contextlib import asynccontextmanager
 from urllib.parse import urlparse
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,7 +13,40 @@ MAX_MB = int(os.getenv("MAX_MB", "20"))
 TIMEOUT = int(os.getenv("CONVERT_TIMEOUT", "120"))
 ORIGINS = [o.strip() for o in os.getenv("ALLOWED_ORIGINS", "https://pdftowordconverter.in,https://www.pdftowordconverter.in,http://localhost:4321,http://localhost:8788").split(",")]
 
-app = FastAPI(title="pdftowordconverter-api", docs_url=None, redoc_url=None)
+STARTED = time.time()
+# Keep-awake: Render's free plan sleeps after 15 minutes without inbound traffic, and waking takes
+# about a minute. The service pings its own public address every KEEP_AWAKE_MINUTES so it stays up.
+# Render sets RENDER_EXTERNAL_URL automatically. Set KEEP_AWAKE_MINUTES=0 to turn this off.
+# Note: staying awake all month uses roughly 720-744 of the workspace's 750 free instance hours.
+_ext = os.getenv("RENDER_EXTERNAL_URL", "").rstrip("/")
+KEEP_AWAKE_URL = os.getenv("KEEP_AWAKE_URL") or (_ext + "/health" if _ext else "")
+KEEP_AWAKE_MINUTES = float(os.getenv("KEEP_AWAKE_MINUTES", "10"))
+
+
+def _ping(url):
+    import urllib.request
+    with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "keep-awake"}), timeout=30) as r:
+        r.read()
+
+
+async def keep_awake():
+    while True:
+        await asyncio.sleep(KEEP_AWAKE_MINUTES * 60)
+        try:
+            await asyncio.get_running_loop().run_in_executor(None, _ping, KEEP_AWAKE_URL)
+        except Exception as e:
+            print("keep-awake ping failed", repr(e)[:200], flush=True)
+
+
+@asynccontextmanager
+async def lifespan(_app):
+    task = asyncio.create_task(keep_awake()) if KEEP_AWAKE_URL and KEEP_AWAKE_MINUTES > 0 else None
+    yield
+    if task:
+        task.cancel()
+
+
+app = FastAPI(title="pdftowordconverter-api", docs_url=None, redoc_url=None, lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=ORIGINS, allow_origin_regex=r"https://[a-z0-9-]+\.pdftowordconverter\.pages\.dev", allow_methods=["GET", "POST"], allow_headers=["*"], expose_headers=["Content-Disposition"], max_age=86400)
 LOCK = asyncio.Semaphore(1)
 RATE = {}  # ip -> [timestamps]
@@ -193,7 +227,7 @@ async def url_to_pdf(url, out):
 
 @app.get("/health")
 async def health():
-    return {"ok": True}
+    return {"ok": True, "uptime_s": int(time.time() - STARTED)}
 
 
 @app.post("/convert/{tool}")
