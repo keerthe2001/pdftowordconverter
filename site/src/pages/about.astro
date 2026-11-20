@@ -8,7 +8,7 @@ import { SITE } from "../data/tools.mjs";
     <p>We build free PDF tools for everyday problems: a portal that wants one file under 200 KB, a bank statement you can't merge because of its password, a certificate that needs to be a PDF in five minutes.</p>
     <h2>Private by design</h2>
     <p>Most of our tools — merge, split, compress, OCR, sign, edit, redact, protect and more — run entirely inside your web browser using WebAssembly. Your documents are never uploaded to a server, so there is nothing for us to store, leak or sell. You can verify this yourself: open your browser's developer tools and watch the network tab while you use a tool.</p>
-    <p>A few conversions (Word, PowerPoint, Excel and HTML to PDF; PDF to Word, PowerPoint and Excel) need desktop-class software. For these, files are sent over HTTPS to our converter, processed in memory and deleted immediately after the result is returned.</p>
+    <p>A few conversions (Word, PowerPoint, Excel and HTML to PDF; PDF to Word, PowerPoint and Excel) need desktop-class software. For these, files are sent over HTTPS to our converter, processed in a temporary folder and deleted as soon as the result is returned.</p>
     <h2>Built on the best open-source engines</h2>
     <ul>
       <li><strong>MuPDF</strong> by Artifex — rendering, page operations, redaction and encryption</li>

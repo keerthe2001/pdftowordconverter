@@ -48,7 +48,7 @@ export async function serverUI(cfg, files, { busy, setBusyMsg, done }) {
   const main = h("div", { class: "single-file" }, h("div", { class: "thumb file-ico" }, (f.name.split(".").pop() || "").toUpperCase()), h("div", {}, h("div", { class: "fc-name" }, f.name), h("div", { class: "fc-meta" }, fmtBytes(f.size))));
   return {
     main,
-    side: h("div", { class: "opts" }, ...extra, h("p", { class: "muted" }, cfg.serverNote || "Converted with LibreOffice on our server. Files are processed in memory and deleted immediately after conversion.")),
+    side: h("div", { class: "opts" }, ...extra, h("p", { class: "muted" }, cfg.serverNote || "Converted with LibreOffice on our server. Files are deleted as soon as the conversion finishes.")),
     label: cfg.actionLabel || "Convert",
     action: async () => {
       if (!API) { toast("Converter not configured.", "error"); return; }

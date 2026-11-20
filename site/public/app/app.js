@@ -19,7 +19,7 @@ function dropzone() {
     cam && h("button", { class: "btn btn-ghost", type: "button", onclick: e => { e.stopPropagation(); cam.click(); } }, "📷 Use camera"),
     h("p", { class: "dz-hint" }, cfg.dropHint || "or drop files here"),
     cfg.urlInput ? urlBox() : null,
-    h("p", { class: "dz-private" }, cfg.server ? "🔒 Sent over HTTPS to our converter, processed in memory and deleted immediately." : "🔒 Processed on your device. Your files are never uploaded."),
+    h("p", { class: "dz-private" }, cfg.server ? "🔒 Sent over HTTPS to our converter, deleted as soon as it's converted." : "🔒 Processed on your device. Your files are never uploaded."),
     input, cam);
   zone.addEventListener("click", () => input.click());
   zone.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); input.click(); } });
