@@ -41,3 +41,24 @@ Indexing requests:
 Still to request: /compress-pdf, /blog/how-to-merge-multiple-pdfs-into-one-file-free-fast,
 /blog/how-to-convert-word-to-pdf-free, /exam-form-ready, /pdf-to-word,
 /blog/best-page-size-and-margin-settings-for-pdf-export
+
+## 2026-11-21 (blocked: Search Console access lost)
+
+Search Console now says "you don't have access to this property" for https://pdftowordconverter.in/
+when signed in as the owner's account. The property list shows only three other properties,
+so the pdftowordconverter.in property has been removed from this account or its verification
+has lapsed. No performance, indexing, sitemap or 404-validation data could be read, and no
+indexing requests were sent.
+
+The live site still serves both google-site-verification meta tags, robots.txt allows everything
+and points to /sitemap-index.xml, and all 63 sitemap URLs return 200.
+
+New blog post /blog/convert-bank-statement-pdf-to-excel: 200, title and canonical correct,
+all 4 images load. Indexing request still pending.
+
+Changed: nothing on the site (no new Search Console data to act on).
+
+Still to request (unchanged, plus the new post): /blog/convert-bank-statement-pdf-to-excel,
+/compress-pdf, /blog/how-to-merge-multiple-pdfs-into-one-file-free-fast,
+/blog/how-to-convert-word-to-pdf-free, /exam-form-ready, /pdf-to-word,
+/blog/best-page-size-and-margin-settings-for-pdf-export
