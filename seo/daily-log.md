@@ -62,3 +62,25 @@ Still to request (unchanged, plus the new post): /blog/convert-bank-statement-pd
 /compress-pdf, /blog/how-to-merge-multiple-pdfs-into-one-file-free-fast,
 /blog/how-to-convert-word-to-pdf-free, /exam-form-ready, /pdf-to-word,
 /blog/best-page-size-and-margin-settings-for-pdf-export
+
+## 2026-11-22 (blocked again: Search Console access lost)
+
+Search Console still says "you don't have access to this property" for https://pdftowordconverter.in/
+when signed in as the owner's account. The property list shows only huntexams.com,
+lastbenchcoderz.blogspot.com and www.keertheology.online. No performance, indexing, sitemap or
+404-validation data could be read, and no indexing requests were sent.
+
+Live checks (from Chrome):
+- Both google-site-verification meta tags are still on the home page; robots.txt allows everything
+  and points to /sitemap-index.xml.
+- /sitemap-index.xml lists sitemap-0.xml with 64 URLs; all 64 return 200.
+- New post /blog/please-upload-a-valid-pdf-file-error: 200, title and canonical correct, in the
+  sitemap, all 3 images load.
+- /blog/convert-bank-statement-pdf-to-excel: still 200 with the correct title and canonical.
+
+Changed: nothing on the site (no Search Console data to act on).
+
+Still to request: /blog/please-upload-a-valid-pdf-file-error, /blog/convert-bank-statement-pdf-to-excel,
+/compress-pdf, /blog/how-to-merge-multiple-pdfs-into-one-file-free-fast,
+/blog/how-to-convert-word-to-pdf-free, /exam-form-ready, /pdf-to-word,
+/blog/best-page-size-and-margin-settings-for-pdf-export
