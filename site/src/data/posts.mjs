@@ -4,6 +4,80 @@ const T = (slug, name) => `<div class="cta-box"><strong>Try it now:</strong> <a 
 
 export const POSTS = [
   {
+    slug: "please-upload-a-valid-pdf-file-error", tool: "repair-pdf", date: "2026-11-22",
+    title: "\"Please Upload a Valid PDF File\": Causes and Fixes",
+    description: "Seeing \"Please upload a valid PDF file\" on an exam or job form? Work through five checks and fix each cause for free in your browser.",
+    image: { src: "/images/blog/please-upload-a-valid-pdf-file-error/please-upload-a-valid-pdf-file-error-five-checks.webp", alt: "An example upload field showing the error Please upload a valid PDF file, next to a list of five checks for finding the cause", width: 1200, height: 630 },
+    body: `
+<p>You pick your certificate, the form thinks for a second, and then a red line appears: <strong>"Please upload a valid PDF file"</strong>. The file opens fine on your phone, it ends in .pdf, and the size looks right. So what is the portal complaining about?</p>
+<p>The message is generic. Students have reported it on NTA forms such as JEE Main and NEET, and other online forms use similar wording. It can stand for several different problems, and the form rarely tells you which rule your file broke. This guide walks through the five causes worth checking, in the order that finds the problem fastest, with a free fix for each. We tested every fix on made-up sample files using the same code our tools run in your browser, and the results are below.</p>
+<h2>What the portal is actually checking</h2>
+<p>Upload checkers usually test a few things before they accept a document: the file type, the file size, and whether the file can be opened and read. Some also look at the file name. When any of these fails, many forms show the same "Please upload a valid PDF file" message. That is why the fix that worked for a friend may do nothing for you: your file may be failing a different check.</p>
+<p>Before you start, open the form's instructions and write down three things for that upload field: the file type it wants (PDF or JPG), the minimum size and the maximum size. For NTA exams, these are in the information bulletin on the official site, such as <a href="https://jeemain.nta.nic.in/" rel="noopener">jeemain.nta.nic.in</a> for JEE Main. Our <a href="/exam-form-ready/neet">NEET page</a> lists the current NEET limits with their source.</p>
+<h2>Check 1: Is it really a PDF?</h2>
+<p>Renaming <em>photo.jpg</em> to <em>photo.pdf</em> changes the name, not the contents. Your phone may still open it, because the gallery or viewer looks inside the file and sees a picture. The portal looks inside too, finds no PDF and rejects it.</p>
+<p>Two quick ways to tell:</p>
+<ul>
+<li><strong>On a computer:</strong> drag the file into a Chrome or Edge window. A real PDF opens in the PDF viewer with page controls. If you get an error instead, the file is not a working PDF.</li>
+<li><strong>The first five characters:</strong> open the file in Notepad. A real PDF always starts with <code>%PDF-</code>. A JPG starts with a few odd symbols followed by <code>JFIF</code> or <code>Exif</code> instead.</li>
+</ul>
+<p>We tried this with a JPG image of a sample certificate renamed to .pdf. Our own tools refused it as well, with "This PDF appears damaged". Repair PDF cannot help here, because there is no PDF inside to repair.</p>
+<p><strong>Fix:</strong> rename the file back to .jpg, then turn it into a real PDF with <a href="/jpg-to-pdf">JPG to PDF</a>. If the form has a size range, do it in <a href="/exam-form-ready">Exam Form Ready</a> instead (choose <em>Custom size</em>, then <em>PDF document</em>), because it also fits the result into your limits.</p>
+<h2>Check 2: Is the size inside the range, at both ends?</h2>
+<p>Most people check only the maximum. Many forms also set a minimum, such as 50 KB, and a file below it fails just like a file above the maximum. A certificate downloaded from a government website is often a small text PDF. Our sample certificate made that way was only 2.0 KB, far below a 50 KB minimum.</p>
+<p>The other trap is what "KB" means. Windows File Explorer counts 1 KB as 1,024 bytes. Android phones (since Android 8) and Macs count 1 kB as 1,000 bytes, as the <a href="https://developer.android.com/reference/android/text/format/Formatter" rel="noopener">Android developer documentation</a> describes. A file of 300,500 bytes is about 293 KB on a Windows laptop and about 300 kB on an Android phone. If the portal counts in thousands, that file is over a 300 KB limit, even though your laptop says it fits. Stay a few KB inside both limits and you avoid the problem.</p>
+<p><strong>Fix for a file that is too big:</strong> use <a href="/compress-pdf">Compress PDF</a> with <em>Exact size</em> and type the maximum. Our guide to <a href="/blog/compress-pdf-without-losing-quality">compressing without wrecking the quality</a> explains what it changes.</p>
+<p><strong>Fix for a file that is too small:</strong> make the PDF from a clear photo or scan of the document instead. In our test, the 2.0 KB text certificate failed Exam Form Ready's size check. A 2000-pixel-wide image of the same certificate, standing in for a phone photo and loaded into the same custom PDF card with a 50–300 KB range, came out at 179.7 KB and passed. Exam Form Ready aims for a size that is acceptable whether the portal counts 1,000 or 1,024 bytes per KB. If the photo would come out above the maximum, it compresses the PDF to fit.</p>
+<figure><img src="/images/blog/please-upload-a-valid-pdf-file-error/exam-form-ready-pdf-below-minimum-before-after.webp" alt="Exam Form Ready custom PDF check: a 2.0 KB file fails the 50 to 300 KB range, while the same certificate made from an image of the page passes at 179.7 KB" width="1200" height="630" loading="lazy" decoding="async"><figcaption>Our test with a made-up certificate: the text-only PDF is too small; the version made from an image of the page fits the 50–300 KB range.</figcaption></figure>
+<p>There is a trade-off. A PDF made from a photo is a picture of the page, so its text can no longer be selected, and any digital signature in the original is gone (more on that below). For an upload that asks for a scanned copy, that is normally what the portal expects anyway. For a photo that is easy to read, follow our tips on <a href="/blog/how-to-scan-documents-to-pdf-with-a-phone-no-app-no-scan-app-fees">scanning documents with a phone</a>.</p>
+${T("exam-form-ready", "Exam Form Ready")}
+<h2>Check 3: Does it have a password or restrictions?</h2>
+<p>Some documents are locked when you download them. The e-Aadhaar PDF from <a href="https://uidai.gov.in" rel="noopener">UIDAI</a> asks for a password, for example, and bank statements usually do too. Upload checkers generally cannot open a file that needs a password.</p>
+<p>A quieter version of this problem is a PDF with <em>restrictions</em>. It opens without a password, but printing or copying is blocked, and the file is still encrypted inside. We made a sample like this: it opened normally in a viewer, yet a PDF library reported it as encrypted. A portal may treat such a file as unreadable without saying why. To spot one, open the file in a PDF viewer's document properties and look for a security or restrictions section.</p>
+<p><strong>Fix:</strong> open <a href="/unlock-pdf">Unlock PDF</a>. For a restricted file, no password is needed. For a password-protected file, type the password you already have. In our test, the unlocked copies of both samples were no longer encrypted. If you are unsure of the password rule, our guide to <a href="/blog/remove-a-password-from-your-own-pdf-free-private-no-sign-up">removing a password from your own PDF</a> covers the usual mistakes.</p>
+<h2>Check 4: Is the file damaged or half-downloaded?</h2>
+<p>A download that stopped early, a file passed through several apps, or a program that saved it badly can all leave a PDF that phone viewers still open but strict checkers reject.</p>
+<p>We damaged copies of a one-page scanned sample in three ways and ran each through <a href="/repair-pdf">Repair PDF</a>:</p>
+<ol>
+<li><strong>Last 40 bytes cut off</strong> (the end-of-file markers were missing): repaired, and the page was recovered.</li>
+<li><strong>Extra text added before the PDF data</strong> (so the file no longer started with <code>%PDF-</code>): repaired, and the new file started with <code>%PDF-</code> again.</li>
+<li><strong>The last 20% of the file missing:</strong> nothing to recover, because the page itself had been cut. The only fix was the original file.</li>
+</ol>
+<figure><img src="/images/blog/please-upload-a-valid-pdf-file-error/repair-pdf-damaged-certificate-recovered.webp" alt="Repair PDF result screen showing a damaged sample certificate repaired, with 1 page recovered and a Download PDF button" width="1200" height="530" loading="lazy" decoding="async"><figcaption>Repair PDF on our sample with its ending cut off: the page was recovered.</figcaption></figure>
+<p><strong>Fix:</strong> download the document again from its original source first, ideally on the same device you will upload from. If it still fails, run it through Repair PDF and upload the repaired copy.</p>
+${T("repair-pdf", "Repair PDF")}
+<h2>Check 5: The file name and how you pick the file</h2>
+<p>Names like <em>certificate.pdf.pdf</em> (which can happen when an app adds the extension a second time), names with symbols such as # % &amp; or emoji, and very long names can trip up some forms. Rename the file to something short and plain, such as <em>category_certificate.pdf</em>, using only letters, numbers and underscores. If the bulletin gives a required file name, use exactly that.</p>
+<p>On a phone, choose the file from the Downloads or Files folder rather than from inside a chat or cloud app. If you have only ever opened it from a chat, save it to the phone first.</p>
+<h2>A note on digitally signed certificates</h2>
+<p>Many certificates issued online carry a digital signature, which a viewer shows as a signature panel or a green tick. That signature protects the exact bytes of the file. Any tool that rewrites the file, whether to compress, unlock or repair it, breaks the signature check.</p>
+<p>We tested this. We signed a sample PDF with a test certificate and checked it with pyHanko, an open-source signature checker: the signature was intact. After running copies through our compress, repair and lossless-optimise code, every copy failed the same check. The page was still there; only the proof that the file is unchanged since signing was lost.</p>
+<p>So if a portal accepts your signed certificate as it is, upload the original. If you have to change it to meet a size or format rule, upload the changed copy as the form asks, and keep the untouched original safe. Bring a printout or the original file for document verification.</p>
+<h2>Work through it in this order</h2>
+<ol>
+<li>Note the field's file type and size range from the instructions.</li>
+<li>Confirm the file is a real PDF. If it is a renamed photo, convert it properly.</li>
+<li>Check the size against both limits, leaving a few KB of margin.</li>
+<li>Remove any password or restrictions with Unlock PDF.</li>
+<li>Re-download it, or run Repair PDF if it still fails.</li>
+<li>Rename it to a short, plain name and pick it from your Downloads folder.</li>
+</ol>
+<h2>If it still won't upload</h2>
+<ul>
+<li><strong>Try another browser or a computer.</strong> If you are on a phone, a laptop with Chrome or Edge rules out problems with the phone's file picker.</li>
+<li><strong>Check you are in the right field.</strong> A form may want a JPG in one box and a PDF in the next. A correct PDF in a JPG-only box fails too.</li>
+<li><strong>Check page rules.</strong> If the instructions ask for one page or a specific document, upload only that. <a href="/extract-pages">Extract Pages</a> can pull a single page out of a longer file.</li>
+<li><strong>Contact the helpdesk early.</strong> If nothing works, email or call the helpline listed in the bulletin, with a screenshot of the error. Do this days before the deadline, not hours.</li>
+</ul>
+<h2>FAQ</h2>
+<p><strong>Why does the file open on my phone but fail on the form?</strong> Phone viewers are forgiving: they can open a picture with a .pdf name and skip over small errors in the file. Upload checkers are strict. Run through the five checks above.</p>
+<p><strong>How do I make a PDF bigger than the minimum size?</strong> Make it from a clear photo or scan of the document in Exam Form Ready with your size range entered. A picture-based PDF is naturally larger than a text-only one.</p>
+<p><strong>Does compressing remove the digital signature?</strong> It breaks it. The text and layout stay, but the signature check fails afterwards, as our test showed. Keep the original.</p>
+<p><strong>Are my documents uploaded to your server?</strong> No. Exam Form Ready, Repair PDF, Unlock PDF, Compress PDF and JPG to PDF all run in your browser, so the file stays on your device.</p>
+<p><strong>Will these fixes work for every portal?</strong> They cover the common causes, but each portal sets its own rules and none of them publishes its checking code. Always follow the instructions for your form first.</p>
+`,
+  },
+  {
     slug: "convert-bank-statement-pdf-to-excel", tool: "pdf-to-excel", date: "2026-11-19",
     title: "Bank Statement PDF to Excel: Convert, Clean Up and Check",
     description: "Turn a bank statement PDF into an Excel sheet for free: unlock it, convert it, join the page sheets and check that the closing balance still adds up.",
