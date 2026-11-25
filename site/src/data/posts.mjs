@@ -4,6 +4,73 @@ const T = (slug, name) => `<div class="cta-box"><strong>Try it now:</strong> <a 
 
 export const POSTS = [
   {
+    slug: "copy-hindi-text-from-pdf", tool: "ocr-pdf", date: "2026-11-25",
+    title: "Copy Hindi Text from PDF Without Garbled Letters",
+    description: "Hindi text from a PDF pastes as gibberish? See why it happens and how to copy Hindi text from PDF files as clean Unicode with free in-browser OCR.",
+    image: { src: "/images/blog/copy-hindi-text-from-pdf/copy-hindi-text-from-pdf-garbled-vs-fixed.webp", alt: "Side-by-side comparison: Hindi text copied straight from a test PDF comes out as a jumble of Devanagari, Latin letters and symbols, while the same lines after PDF to JPG, JPG to PDF and Hindi OCR read correctly", width: 1200, height: 630 },
+    body: `
+<p>You open a Hindi notice, circular or question paper, select a paragraph and paste it into Word or WhatsApp. What comes out is a mess: English letters mixed into the words, matras in the wrong place, odd symbols, or a string of Latin characters that looks nothing like Hindi. If you need to copy Hindi text from PDF files for a form, an assignment or a translation, retyping is not your only option.</p>
+<p>This guide explains why the text breaks, how to tell which kind of problem your file has, and a free three-step route that gives you clean Unicode Hindi you can paste anywhere. We tested it on a made-up Hindi notice and the results are below.</p>
+<h2>Why Hindi text breaks when you copy it</h2>
+<p>A PDF does not store words the way a Word file does. It stores the shapes to draw on the page, plus, if the program that made it bothered, a map that says which letters those shapes stand for. Copying relies entirely on that map.</p>
+<p>English survives this well because each letter is usually one shape. Devanagari is harder. One visible shape can stand for several letters (क्ष, त्र, श्र), and the ि matra is drawn before the consonant even though it is typed after it. When the map is missing or incomplete, your viewer guesses, and the guess is what you see in the pasted text.</p>
+<p>There are three common situations:</p>
+<ul>
+<li><strong>A scanned page.</strong> The PDF is just a picture. You cannot select any text at all.</li>
+<li><strong>A legacy font such as Kruti Dev.</strong> Many older Hindi documents were typed in fonts that, as <a href="https://en.wikipedia.org/wiki/Kruti_Dev" rel="noopener">Wikipedia's Kruti Dev article</a> puts it, map Devanagari glyphs onto ASCII character positions. The page looks like Hindi, but the stored characters are English keyboard codes, so pasting gives you mostly English letters and punctuation.</li>
+<li><strong>A Unicode font with a broken map.</strong> The text pastes as Devanagari, but with missing or misplaced matras and stray Latin letters or symbols mixed in.</li>
+</ul>
+<h2>Our test: what happened to a made-up notice</h2>
+<p>We wrote a short sample notice in Hindi (a heading and three short paragraphs, 72 words, for a fictional institute), made a PDF of it with a Unicode Devanagari font, and then removed the font's text map. That imitates the third situation above. On screen the page looked perfect. Copied out, the first line read <em>Kमूनासू=ना काüLनि8संdथाK</em> instead of <em>नमूना सूचना (काल्पनिक संस्थान)</em>.</p>
+<p>Our first try was to run the file straight through <a href="/ocr-pdf">OCR PDF</a> with Hindi selected. That did not help, and the reason matters for anyone with the same problem. OCR PDF skips any page that already has a good amount of text in it, so it does not waste time on pages that are already searchable. A page with a broken text layer still counts as "has text", so the tool kept it as it was.</p>
+<figure><img src="/images/blog/copy-hindi-text-from-pdf/ocr-pdf-page-already-had-text-kept-as-is.webp" alt="OCR PDF result screen reading Average recognition confidence 100%, 1 page(s) already had text and were kept as-is, with a ZIP of a PDF and a text file" width="1200" height="597" loading="lazy" decoding="async"><figcaption>Running OCR directly on the broken PDF: the page was skipped, so the text file still held the garbled text.</figcaption></figure>
+<p>Note the "confidence 100%". That number covers only pages that were actually recognised. Here none were, so it tells you nothing. The line to look for is "already had text and were kept as-is".</p>
+<p>The fix is to remove the bad text layer first by turning each page into a picture, then run OCR on the picture. Using the steps below, the text file we got back matched the original notice word for word: 72 of 72 words, including the conjuncts and matras. OCR PDF reported an average confidence of 94%.</p>
+<h2>How to copy Hindi text from a PDF: step by step</h2>
+<p>All three tools run in your browser, so the document is not uploaded to a server. That matters for anything with your name or roll number on it.</p>
+<ol>
+<li><strong>Turn the pages into images.</strong> Open <a href="/pdf-to-jpg">PDF to JPG</a>, select your PDF and set <em>Quality</em> to <em>Print (300 DPI)</em>. If you only need some pages, type them in the <em>Pages</em> box (for example <code>2-3</code>). Click <em>Convert to images</em> and download. One page gives a JPG; several pages give a ZIP, which you need to extract first.</li>
+<li><strong>Put the images back into a PDF.</strong> Open <a href="/jpg-to-pdf">JPG to PDF</a>, select all the page images and check the thumbnails are in page order. Some file pickers can list <em>page-10</em> before <em>page-2</em>, so drag them or use the arrow buttons if needed. Click <em>Convert to PDF</em> and download. This new PDF has no text layer at all, only pictures of the pages.</li>
+<li><strong>Run OCR in Hindi.</strong> Open <a href="/ocr-pdf">OCR PDF</a> and select the new PDF. Set <em>Document language</em> to <em>Hindi</em>. If the page mixes Hindi and English, choose <em>English</em> as the second language. Under <em>Output</em>, pick <em>Text file (.txt)</em> or <em>Both</em>, then click <em>Run OCR</em>. The first run downloads the Hindi language model; after that it is cached.</li>
+<li><strong>Open the .txt file and copy.</strong> The text is standard Unicode Hindi, so it pastes correctly into Word, Google Docs, email or a web form. If you chose <em>Both</em>, you also get a searchable PDF. When we pulled the text out of that PDF, it matched as well.</li>
+</ol>
+<figure><img src="/images/blog/copy-hindi-text-from-pdf/pdf-to-jpg-print-300-dpi-setting.webp" alt="PDF to JPG tool with a Hindi notice PDF loaded, image format set to JPG and quality set to Print (300 DPI)" width="1200" height="478" loading="lazy" decoding="async"><figcaption>Step 1: choose Print (300 DPI) so the OCR gets sharp letters to read.</figcaption></figure>
+<figure><img src="/images/blog/copy-hindi-text-from-pdf/ocr-pdf-hindi-language-settings.webp" alt="OCR PDF settings panel with Document language set to Hindi, second language None, output Both, and the Run OCR button" width="1200" height="691" loading="lazy" decoding="async"><figcaption>Step 3: the rebuilt PDF loaded in OCR PDF with Hindi chosen as the document language.</figcaption></figure>
+${T("ocr-pdf", "OCR PDF")}
+<h2>Which route fits your file?</h2>
+<p>Select a line in the PDF, paste it into Notepad or a blank note, and look at what you get:</p>
+<ul>
+<li><strong>Nothing selects.</strong> It is a scan. Skip steps 1 and 2 and go straight to OCR PDF with Hindi selected. If the scan is crooked or dark, rescan it first; our guide to <a href="/blog/how-to-scan-documents-to-pdf-with-a-phone-no-app-no-scan-app-fees">scanning documents with a phone</a> shows how to get a clean page.</li>
+<li><strong>Mostly English letters and punctuation.</strong> It is almost certainly a legacy font. A Kruti Dev to Unicode converter can turn the pasted text straight into Hindi, which is quick for a paragraph or two. The image-and-OCR route above works on these files too, because OCR reads what the page looks like, not the hidden codes.</li>
+<li><strong>Hindi, but with broken matras and stray symbols.</strong> The text map is faulty. Use the three-step route.</li>
+<li><strong>Clean Hindi.</strong> Nothing to fix. Copy away.</li>
+</ul>
+<h2>Common mistakes and how to fix them</h2>
+<ul>
+<li><strong>"Already had text and were kept as-is".</strong> You ran OCR on the original PDF. Do steps 1 and 2 first so there is no old text layer for the tool to keep.</li>
+<li><strong>Hindi comes out as English nonsense.</strong> The document language was left on English, the default. Change it to Hindi and run it again.</li>
+<li><strong>English words inside Hindi lines are wrong.</strong> Add English as the second language. For a page in Marathi, choose Marathi instead of Hindi; it uses the same script but its own language model.</li>
+<li><strong>Blurry or wrong letters.</strong> Check that step 1 used 300 DPI. On our clean test page even 150 DPI gave the same result, but small print, stamps and photocopies need the extra sharpness. OCR PDF itself reads every page at 300 DPI, so a lower-resolution image only gives it less detail to work with.</li>
+<li><strong>Pasted text shows empty boxes.</strong> The text is fine; the app you pasted into is using a font without Devanagari. Switch it to one that has it, such as Noto Sans Devanagari, or Nirmala UI or Mangal on Windows.</li>
+<li><strong>Tables or columns come out as one long run of text.</strong> The text file keeps the words, not the layout. Copy one column or section at a time, or use the searchable PDF to find the part you need.</li>
+<li><strong>The PDF asks for a password.</strong> The tools ask for it when you open the file. If you would rather remove it once, see our guide to <a href="/blog/remove-a-password-from-your-own-pdf-free-private-no-sign-up">removing a password from your own PDF</a>.</li>
+</ul>
+<h2>A checklist after you copy Hindi text from PDF files</h2>
+<ol>
+<li>Compare a few lines of the output with the PDF on screen, especially names, numbers and dates.</li>
+<li>Watch for look-alike letters such as ब/व and the half letters in conjuncts. OCR can confuse them on poor scans.</li>
+<li>For a long document, work in batches. Use <a href="/extract-pages">Extract Pages</a> or the <em>Pages</em> box so each run stays quick.</li>
+<li>Keep the original PDF. The image-based copy is larger and is only a working file.</li>
+</ol>
+<h2>FAQ</h2>
+<p><strong>Can I get the Hindi text into Word?</strong> Yes. Follow the steps, open the .txt file and paste it into Word. You will lose the original layout, but the text is real Unicode Hindi you can edit, search and spell-check. If the text in your PDF already copies cleanly, <a href="/pdf-to-word">PDF to Word</a> gives you an editable .docx directly. That converter runs on our server, and the file is deleted right after conversion.</p>
+<p><strong>Does this work for Tamil, Telugu, Bengali or other Indian languages?</strong> The same problem happens in other scripts, and the same route works. OCR PDF supports Tamil, Telugu, Kannada, Malayalam, Bengali, Marathi, Gujarati, Punjabi, Odia and Urdu as well as Hindi. Pick the matching language in step 3.</p>
+<p><strong>Can it read handwritten Hindi?</strong> No. It is built for printed text.</p>
+<p><strong>Is my document uploaded anywhere?</strong> No. PDF to JPG, JPG to PDF and OCR PDF all run on your device. Only the OCR language model is downloaded to your browser, once.</p>
+<p><strong>Why not just tick the OCR option in PDF to Word?</strong> Both our OCR PDF tool and the OCR option in our PDF to Word converter skip pages that already have text, and other OCR tools may do the same. A PDF with a broken text layer gets passed through unchanged. Turning the pages into images first is what makes the OCR actually run.</p>
+`,
+  },
+  {
     slug: "please-upload-a-valid-pdf-file-error", tool: "repair-pdf", date: "2026-11-22",
     title: "\"Please Upload a Valid PDF File\": Causes and Fixes",
     description: "Seeing \"Please upload a valid PDF file\" on an exam or job form? Work through five checks and fix each cause for free in your browser.",
