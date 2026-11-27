@@ -106,3 +106,25 @@ Still to request: /blog/please-upload-a-valid-pdf-file-error, /blog/convert-bank
 /compress-pdf, /blog/how-to-merge-multiple-pdfs-into-one-file-free-fast,
 /blog/how-to-convert-word-to-pdf-free, /exam-form-ready, /pdf-to-word,
 /blog/best-page-size-and-margin-settings-for-pdf-export
+
+## 2026-11-27 (blocked a fourth time: Search Console access lost)
+
+Search Console still says "you don't have access to this property" when signed in as the owner's
+account, for both the URL-prefix property https://pdftowordconverter.in/ and the domain property
+pdftowordconverter.in. No performance, indexing, sitemap or 404-validation data could be read, and
+no indexing requests were sent. This run did not click "Verify your ownership".
+
+Live checks (from Chrome):
+- Both google-site-verification meta tags are still on the home page. robots.txt allows everything
+  and points to /sitemap-index.xml.
+- /sitemap-index.xml lists 65 URLs; all 65 return 200. An unknown URL returns a real 404.
+- New post /blog/copy-hindi-text-from-pdf: 200, title and canonical correct, in the sitemap,
+  4/4 images load.
+- /blog/please-upload-a-valid-pdf-file-error and /blog/convert-bank-statement-pdf-to-excel: still 200.
+
+Changed: nothing on the site (no Search Console data to act on).
+
+Still to request: /blog/copy-hindi-text-from-pdf, /blog/please-upload-a-valid-pdf-file-error,
+/blog/convert-bank-statement-pdf-to-excel, /compress-pdf,
+/blog/how-to-merge-multiple-pdfs-into-one-file-free-fast, /blog/how-to-convert-word-to-pdf-free,
+/exam-form-ready, /pdf-to-word, /blog/best-page-size-and-margin-settings-for-pdf-export
