@@ -4,6 +4,85 @@ const T = (slug, name) => `<div class="cta-box"><strong>Try it now:</strong> <a 
 
 export const POSTS = [
   {
+    slug: "self-attest-documents-online", tool: "sign-pdf", date: "2026-11-28",
+    title: "How to Self-Attest Documents Online for Form Uploads",
+    description: "Self-attest documents online for a job or admission portal: add \"Self-attested\", your signature and the date to a scan, then fit the KB limit. Free.",
+    image: { src: "/images/blog/self-attest-documents-online/self-attested-copy-signature-date-example.webp", alt: "A sample marksheet from a fictional board with the words Self-attested, a signature and the date 28 Nov 2026 added below the marks table, shown with a zoomed-in view of that corner", width: 1200, height: 630 },
+    body: `
+<p>A recruitment or admission form asks you to upload "self-attested scanned copies" of your certificates, and you have no printer at home. You don't need one. You can self-attest documents online by adding the words "Self-attested", your own signature and the date to the scanned copy, then bringing the file to the size the portal allows.</p>
+<p>This guide covers what self-attestation means, what two 2026 notifications ask for, the exact steps in our free tools, and the results of a test run on a made-up marksheet. Everything below happens in your browser, so your certificates are not uploaded to us.</p>
+
+<h2>What a self-attested copy is</h2>
+<p>Attesting a copy means signing it to confirm it is a true copy of the original. For years that signature had to come from a gazetted officer or notary. Self-attestation lets you sign your own copies instead, and the original is checked later if you are selected.</p>
+<p>Government bodies have moved to this system in writing. The Ministry of External Affairs told passport offices in 2014 that applicants <a href="https://www.passportindia.gov.in/AppOnlineProject/pdf/Self_attestation_of_docs.pdf" rel="noopener">may submit self-attested copies</a> and produce originals at verification. Puducherry's <a href="https://www.py.gov.in/sites/default/files/arw24032015.pdf" rel="noopener">2015 government order</a> tells its departments to accept self-attestation in place of attestation by gazetted officers, and to ask for originals only from candidates who are finally selected.</p>
+<p>Two things it is not:</p>
+<ul>
+<li><strong>Not a digital signature certificate (DSC) or Aadhaar eSign.</strong> Those are cryptographic. A self-attested copy is simply a copy with your visible signature on it.</li>
+<li><strong>Not a replacement for the original.</strong> Keep the original certificate ready for document verification.</li>
+</ul>
+
+<h2>What portals actually ask for</h2>
+<p>Rules differ by notification, so read yours first. Two 2026 examples show the details that trip people up:</p>
+<ul>
+<li>The <a href="https://recruitment.nic.in/DetailedSciB.pdf" rel="noopener">NIC Scientist-B advertisement (2026)</a> asks for "separate self-attested scanned copies" of documents such as the graduation certificate and GATE score card, in PDF format, between 10 KB and 500 KB each.</li>
+<li>The Tamil Nadu Dr. M.G.R. Medical University's <a href="https://www.tnmgrmu.ac.in/wp-content/uploads/2026/02/EC-Instruction-UG.pdf" rel="noopener">online eligibility certificate instructions</a> ask for self-attested scanned copies at 70 KB to 150 KB per document.</li>
+</ul>
+<p>Notice three things. Each document is a separate file. There is a minimum size as well as a maximum, so squeezing a file too hard can get it rejected. And neither notice says how to sign, so a clean, legible signature on the scan is what matters. If your notification does give a format, such as "sign in ink and then scan", follow that instead of this guide.</p>
+
+<h2>How to self-attest documents online, step by step</h2>
+<ol>
+<li><strong>Scan the original.</strong> Open <a href="/scan-to-pdf">Scan to PDF</a> on your phone, take a photo of the certificate (or choose one you already took) and keep <em>Scan enhancement</em> on <em>Document (clean &amp; sharp)</em>. For a two-sided document, add both photos so you get one PDF with two pages. Click <em>Create PDF</em> and download it.</li>
+<li><strong>Get your signature ready.</strong> Sign on plain white paper with a dark pen and photograph it in good light. This keeps the signature on your copies the same as the one on your application.</li>
+<li><strong>Open the scan in Sign PDF.</strong> Go to <a href="/sign-pdf">Sign PDF</a>, select the PDF, click <em>Create signature</em>, choose the <em>Upload</em> tab and pick the signature photo. Leave <em>Remove white background</em> ticked and click <em>Use signature</em>.</li>
+<li><strong>Add the words and the date.</strong> Click <em>+ Name / text</em>. A box saying "Signed by:" appears; click into it and replace the text with <code>Self-attested</code>. Then click <em>+ Date</em>, which adds today's date in a form like "28 Nov 2026".</li>
+<li><strong>Arrange the three items.</strong> Put them in a blank area, usually near the bottom: "Self-attested" on top, the signature below it and the date under that. Keep them off the printed text, photos and official seals. To move a text box, drag it by its dotted border, not by the letters (see the mistakes section).</li>
+<li><strong>Repeat on every page.</strong> Use the › button above the preview to go to the next page. Click your signature thumbnail in the side panel to place it again, and add the text and date the same way.</li>
+<li><strong>Save.</strong> Click <em>Sign PDF</em> and download the file.</li>
+<li><strong>Fit the size limit.</strong> Open <a href="/exam-form-ready">Exam Form Ready</a>, choose <em>Custom size</em>, set <em>Type</em> to <em>PDF document</em> and enter the portal's minimum and maximum KB. Choose your signed PDF. It is compressed to fit the maximum if needed, and a list of ticks or crosses tells you whether it meets the range. <a href="/compress-pdf">Compress PDF</a> with <em>Exact size</em> also works when there is only a maximum.</li>
+<li><strong>Check and rename.</strong> Open the final file, zoom in and read it as the reviewer would. Name it after the document (for example <code>class10-marksheet.pdf</code>) so you upload the right file into the right slot.</li>
+</ol>
+<figure><img src="/images/blog/self-attest-documents-online/sign-pdf-self-attested-text-signature-date.webp" alt="Sign PDF editor showing a fictional marksheet with three items placed below the marks table: the text Self-attested, an uploaded signature and the date 28 Nov 2026, with the Create signature, Name / text and Date buttons in the side panel" width="1200" height="936" loading="lazy" decoding="async"><figcaption>Steps 4 and 5: "Self-attested", the signature and the date placed in empty space below the marks table.</figcaption></figure>
+${T("sign-pdf", "Sign PDF")}
+
+<h2>Our test: a made-up marksheet from phone photo to upload</h2>
+<p>We made a Class X marksheet for a fictional board and student, saved it as a 2480 × 3508 pixel JPG of about 390 KB to stand in for a phone photo, and ran it through the steps above. These are the file sizes we got:</p>
+<ul>
+<li><strong>Scan to PDF</strong> (A4, Document mode): 314 KB, one page.</li>
+<li><strong>After Sign PDF</strong> with "Self-attested", the signature and the date: 342 KB.</li>
+<li><strong>Exam Form Ready, Custom size, PDF 70–150 KB:</strong> 135.9 KB, with ticks for size, PDF format and file name.</li>
+<li><strong>Compress PDF, Recommended:</strong> 122 KB.</li>
+<li><strong>Compress PDF, Exact size 140 KB:</strong> 132 KB, with the scan turned grey. With <em>Keep colour</em> ticked it came to 136 KB in colour.</li>
+<li><strong>Compress PDF, Exact size 60 KB:</strong> 60 KB and still readable when zoomed in.</li>
+</ul>
+<p>Two details from this test are worth knowing. The "Self-attested" text and the date are stored as real text, not as part of the photo, so they stayed blue and sharp even when the scan was compressed hard and turned grey. And the 60 KB file looked fine, but it would fail a 70–150 KB rule like the one above. Smaller is not always better.</p>
+<figure><img src="/images/blog/self-attest-documents-online/exam-form-ready-custom-pdf-70-150-kb-check.webp" alt="Exam Form Ready custom size panel with Type set to PDF document, minimum 70 KB and maximum 150 KB, showing a result of 135.9 KB with green ticks for size, PDF format and file name" width="1200" height="560" loading="lazy" decoding="async"><figcaption>The signed test file checked against a 70–150 KB range in Exam Form Ready.</figcaption></figure>
+
+<h2>When the portal wants JPG instead of PDF</h2>
+<p>Some forms take only images. Do the signing in PDF as above, then open <a href="/pdf-to-jpg">PDF to JPG</a> and convert the signed file. At the default <em>Normal (150 DPI)</em> setting our test page came out as a 1241 × 1754 pixel JPG of 179 KB. If that is over the limit, try <em>Screen (96 DPI)</em>, which makes a smaller image, and check that the marks or grades are still readable. A multi-page document gives one JPG per page in a ZIP file.</p>
+
+<h2>Common mistakes and how to fix them</h2>
+<ul>
+<li><strong>The text box will not move.</strong> Clicking on the letters puts you in typing mode. Drag the box by its dotted outline or the empty strip just below the words. You can also select the box and use the arrow keys.</li>
+<li><strong>Everything lands on top of each other.</strong> New items appear in the middle of the part of the page you are looking at. Move each one into place before you add the next.</li>
+<li><strong>Words in Hindi or another Indian script come out wrong.</strong> The text and date boxes use standard Latin fonts, which have no Devanagari, Tamil or other Indian letters. Type "Self-attested" in English. Your signature is an image, so it can be in any script.</li>
+<li><strong>The file is now below the minimum.</strong> Compress less, or use Exam Form Ready, which only compresses as far as the maximum you enter. If even the uncompressed scan is under the minimum, scan again at better quality instead of padding a tiny file.</li>
+<li><strong>The portal wanted separate files, but you have one PDF.</strong> If you scanned several certificates into one file, use <a href="/split-pdf">Split PDF</a> or <a href="/extract-pages">Extract Pages</a> to make one file per document, then check each against the size range.</li>
+<li><strong>The upload still fails with a "valid PDF" error.</strong> Our guide to the <a href="/blog/please-upload-a-valid-pdf-file-error">"Please upload a valid PDF file" error</a> goes through the usual causes, including password-protected files.</li>
+<li><strong>The certificate came with its own digital signature.</strong> Some certificates downloaded from official websites are digitally signed by the issuer. Changing the file can make PDF readers show that signature as no longer valid. Check whether your portal wants such certificates as they are, without your marks.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<h3>Is a signature added on screen accepted as self-attestation?</h3>
+<p>The notifications we checked ask for self-attested scanned copies but do not say how the signature must be put on. A scan carrying your signature, the words "Self-attested" and the date looks the same to a reviewer either way. If your notification asks for an ink signature on a printed copy, do that and scan it.</p>
+<h3>Do I have to sign every page?</h3>
+<p>Most instructions talk about documents, not pages. Signing each page is the safer choice, because it shows you vouch for the whole copy and not just its first page. It takes a minute in Sign PDF.</p>
+<h3>Does self-attestation mean I never show the original?</h3>
+<p>No. The passport circular and the Puducherry order linked above both say originals are checked later, at verification or after selection. Keep them ready.</p>
+<h3>Is this the same as signing my application form?</h3>
+<p>No. The signature image you upload with the form usually has its own pixel and KB rules. For those, use the exam presets or Custom size in Exam Form Ready. For signing other PDFs, such as offer letters, see our guide to <a href="/blog/sign-a-pdf-electronically-for-free-without-leaving-your-browser">signing a PDF in your browser</a>.</p>
+`,
+  },
+  {
     slug: "copy-hindi-text-from-pdf", tool: "ocr-pdf", date: "2026-11-25",
     title: "Copy Hindi Text from PDF Without Garbled Letters",
     description: "Hindi text from a PDF pastes as gibberish? See why it happens and how to copy Hindi text from PDF files as clean Unicode with free in-browser OCR.",
